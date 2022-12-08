@@ -1,0 +1,104 @@
+
+
+
+
+<app-coordinateurheader></app-coordinateurheader>
+<app-coordinateurmenu></app-coordinateurmenu>
+
+
+<br><hr>
+  
+
+
+
+<div class="row justify-content-center">
+  <div class="col-md-4 register-absence">
+    <!-- form card register -->
+    <div class="card-body">
+      <form [formGroup]="findformForm" (ngSubmit)="onSubmitss()">
+
+
+
+        <div class="form-row">
+          <div class="col">
+              <label for="inputName">ID EMPLOYE</label>
+              <input class="form-control" type="text" formControlName="email" />
+              <!-- error -->            
+            </div>
+          <div class="col">
+            <label for="inputName">DATE DEBUT</label>
+            <input class="form-control" type="date" formControlName="password" />
+            <!-- error -->            
+          </div>
+          <div class="col">
+            <label for="inputName">DATE FIN</label>
+            <input class="form-control" type="date" formControlName="password" />
+            <!-- error -->            
+          </div>
+        </div>
+
+
+<br><br>
+
+
+        <div class="form-group">
+
+          <button class="btn btn-dark btn-lg btn-block" type="submit">
+            Rechercher Absence
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- form card register -->
+</div>
+
+
+
+<br><hr>
+
+<div class="container">
+    <button class="btn btn-lg btn-success" routerLink="/coordinateurcreerabsence/">create new</button>&nbsp;
+    <button class="btn btn-lg btn-info" (click)="openPDF()">Download PDF</button>&nbsp;
+  
+  </div>
+  <br><hr>
+  
+  <div class="container">
+      <!-- No data message -->
+      <p *ngIf="absence.length <= 0" class="no-data text-center">There is no absence added yet!</p>
+      <!-- absence list -->
+      <table class="table table-bordered" *ngIf="absence.length > 0">
+        <thead class="table-success">
+          <tr>
+            <th scope="col">description</th>
+            <th scope="col">datedebut</th>
+            <th scope="col">datefin</th>
+            <th scope="col">etat</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let absence of absence; let i = index">
+            <td>{{absence.description}}</td>
+            <td>{{absence.datedebut}}</td>
+            <td>{{absence.datefin}}</td>
+            <td>{{absence.etat}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  
+
+
+
+
+
+
+
+
+
+
+<app-coordinateurfooter></app-coordinateurfooter>

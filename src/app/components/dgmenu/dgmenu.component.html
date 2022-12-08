@@ -1,0 +1,79 @@
+<div class="main-sidebar sidebar-style-2">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <a routerLink="/dglistabsence/"> <img alt="image" src="assets/img/grh.png" class="header-logo" /> <span
+            class="logo-name"></span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="menu-header">Main</li>
+        <li class="dropdown active">
+          <a routerLink="/dglistabsence/" class="nav-link"><i data-feather="fa-user"></i><span>Acceuil</span></a>
+        </li>
+
+
+
+
+
+
+        <li class="dropdown">
+          <a routerLink="/dglistprojet/" class="menu-toggle nav-link has-dropdown btn-danger"><i
+              data-feather="chevrons-left"></i><span>Projets</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/dglistprojet/">Projets</a></li>
+            <li><a class="nav-link" routerLink="/dgcreerprojet/">Créer New Projet</a></li>
+          </ul>
+        </li>
+
+
+
+
+        
+        <li class="dropdown">
+          <a routerLink="/dglistabsence/" class="menu-toggle nav-link has-dropdown btn-warning"><i
+              data-feather="chevrons-left"></i><span>Absences</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/dglistabsence/">Absences</a></li>
+            <li><a class="nav-link" routerLink="/dgcreerabsence/">Créer New Absence</a></li>
+          </ul>
+        </li>
+
+
+
+
+        <li class="dropdown">
+          <a routerLink="/dglistavancementprojet/" class="menu-toggle nav-link has-dropdown btn-info"><i
+              data-feather="chevrons-left"></i><span>Avancement Projets</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/dglistavancementprojet/">Avancements Projets</a></li>
+            <li><a class="nav-link" routerLink="/dgcreeravancementprojet/">Créer Avancemnt Projet</a></li>
+          </ul>
+        </li>
+
+
+
+
+
+
+        <li class="dropdown">
+          <a routerLink="/dglistconge/" class="menu-toggle nav-link has-dropdown btn-success"><i
+              data-feather="chevrons-left"></i><span>Conges</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/dglistconge/">Liste conges</a></li>
+            <li><a class="nav-link" routerLink="/dgcreerconge/">Créer conge</a></li>
+          </ul>
+        </li>
+ 
+
+
+
+        <li class="nav-item" routerLinkActive="active" *ngIf="userIsAuthenticated">
+          <a class="nav-link" (click)="onLogout()">Logout</a>
+        </li>
+
+
+
+
+      </ul>
+    </aside>
+  </div>

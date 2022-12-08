@@ -1,0 +1,121 @@
+<div class="main-sidebar sidebar-style-2">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <a routerLink="/adminlistabsence/"> <img alt="image" src="assets/img/grh.png" class="header-logo" /> <span
+            class="logo-name"></span>
+        </a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="menu-header">Main</li>
+        <li class="dropdown active">
+          <a routerLink="/adminlistabsence/" class="nav-link"><i data-feather="fa-user"></i><span>Acceuil</span></a>
+        </li>
+
+
+        <li class="dropdown">
+          <a routerLink="/adminlistuser/" class="menu-toggle nav-link has-dropdown btn-danger"><i
+              data-feather="chevrons-left"></i><span>Utilisateurs</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/adminlistuser/">Utilisateurs</a></li>
+            <li><a class="nav-link" routerLink="/admincreeruser/">Créer New user</a></li>
+          </ul>
+        </li>
+
+
+
+        <li class="dropdown">
+          <a routerLink="/adminlistprojet/" class="menu-toggle nav-link has-dropdown btn-warning"><i
+              data-feather="chevrons-left"></i><span>Projets</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/adminlistprojet/">Projets</a></li>
+            <li><a class="nav-link" routerLink="/admincreerprojet/">Créer New Projet</a></li>
+          </ul>
+        </li>
+
+
+
+
+        
+        <li class="dropdown">
+          <a routerLink="/adminlistabsence/" class="menu-toggle nav-link has-dropdown btn-success"><i
+              data-feather="chevrons-left"></i><span>Absences</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/adminlistabsence/">Absences</a></li>
+            <li><a class="nav-link" routerLink="/admincreerabsence/">Créer New Absence</a></li>
+          </ul>
+        </li>
+
+
+
+
+        <li class="dropdown">
+          <a routerLink="/adminlistavancementprojet/" class="menu-toggle nav-link has-dropdown btn-dark"><i
+              data-feather="chevrons-left"></i><span>Avancement Projets</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/adminlistavancementprojet/">Avancements Projets</a></li>
+            <li><a class="nav-link" routerLink="/admincreeravancementprojet/">Créer Avancemnt Projet</a></li>
+          </ul>
+        </li>
+
+
+
+        <li class="dropdown">
+          <a routerLink="/adminlistavancementtache/" class="menu-toggle nav-link has-dropdown btn-info"><i
+              data-feather="chevrons-left"></i><span>Avancement taches</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/adminlistavancementtache/"> Avancement tache</a></li>
+            <li><a class="nav-link" routerLink="/admincreeravancementtache/">Créer Avancement tache</a></li>
+          </ul>
+        </li>
+
+
+        <li class="dropdown">
+          <a routerLink="/adminlistconge/" class="menu-toggle nav-link has-dropdown btn-success"><i
+              data-feather="chevrons-left"></i><span>Conges</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/adminlistconge/">Liste conges</a></li>
+            <li><a class="nav-link" routerLink="/admincreerconge/">Créer conge</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a routerLink="/adminlistgroupe/" class="menu-toggle nav-link has-dropdown btn-primary"><i
+              data-feather="chevrons-left"></i><span>Groupes</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/adminlistgroupe/">Liste groupes</a></li>
+            <li><a class="nav-link" routerLink="/admincreergroupe/">Créer groupe</a></li>
+          </ul>
+        </li>
+
+
+        <li class="dropdown">
+          <a routerLink="/adminlistmessage/" class="menu-toggle nav-link has-dropdown btn-info"><i
+              data-feather="chevrons-left"></i><span>Messages</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/adminlistmessage/">Liste Messages</a></li>
+            <li><a class="nav-link" routerLink="/admincreermessage/">Créer Message</a></li>
+          </ul>
+        </li>
+
+
+
+
+        <li class="dropdown">
+          <a routerLink="/adminlisttache/" class="menu-toggle nav-link has-dropdown btn-info"><i
+              data-feather="chevrons-left"></i><span>Taches</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" routerLink="/adminlisttache/">Liste Taches</a></li>
+            <li><a class="nav-link" routerLink="/admincreertache/">Créer Tache</a></li>
+          </ul>
+        </li>
+
+
+
+
+        <li class="nav-item" routerLinkActive="active" *ngIf="userIsAuthenticated">
+          <a class="nav-link" (click)="onLogout()">Logout</a>
+        </li>
+
+
+      </ul>
+    </aside>
+  </div>
