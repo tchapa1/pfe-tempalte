@@ -7,7 +7,10 @@ import { AuthData } from 'src/app/auth/user.model';
 
 
 import {environment} from '../../environments/environment'
-const BACKEND_URL = environment.apiUrl 
+//const BACKEND_URL = environment.apiUrl 
+
+
+
 
 
 
@@ -20,7 +23,7 @@ export class AuthService {
 
   baseUri: string = 'http://localhost:4000/userapiuser';
 
-
+  BACKEND_URL : "http://localhost:4000/userapiuser";
   private isAuthenticated = false;
   private token: string;
   private tokenTimer: any;
@@ -137,7 +140,7 @@ signIn(email: string, password: string) {
       role: "",
      
      };    this.http
-      .post(BACKEND_URL + "signup", authData)
+      .post(this.BACKEND_URL + "signup", authData)
       .subscribe(response => {
         this.err.next(null)
         this.router.navigate(["/"]);

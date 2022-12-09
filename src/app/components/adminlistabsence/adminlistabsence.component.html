@@ -7,7 +7,56 @@
 
 <br><hr>
   
+<div class="container">
 
+
+  <form [formGroup]="absenceForm" (ngSubmit)="onSubmitssss()">
+
+
+
+    <div class="form-row">
+      <div class="col">
+        <label for="inputName">idemploye</label>
+        <select class="form-select"  name="idemploye"  formControlName="idemploye">
+          <option>Selectionner idemploye </option>
+          <option *ngFor="let employe of user; let i = index" value="{{employe._id}}">{{employe.email}}</option>
+        </select>
+        <!-- error -->            </div>
+
+    </div>
+
+
+
+    <div class="form-row">
+      <div class="col">
+        <label for="inputName">datedebut</label>
+        <input class="form-control" type="date" formControlName="datedebut" />
+
+      </div>
+
+
+      <div class="col">
+        <label for="inputName">datefin</label>
+        <input class="form-control" type="date" formControlName="datefin" />
+        
+      </div>
+
+
+
+    </div>
+
+
+<br><br>
+    <div class="form-group">
+
+      <button class="btn btn-dark btn-lg btn-block" type="submit">
+        Filter
+      </button>
+    </div>
+  </form>
+
+
+</div>
 
 
 

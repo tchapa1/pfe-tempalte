@@ -29,7 +29,7 @@ export class AdminapiabsenceService {
 
 
   findabsence(data): Observable<any> {
-    let url = `${this.baseUri}/find`;
+    let url = `${this.baseUri}/find/${data}`;
     return this.http.get(url, data).pipe(catchError(this.errorMgmt));
   }
 

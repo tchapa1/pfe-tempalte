@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminapiuserService } from './../../service/adminapiuser.service';
 
 
 @Component({
@@ -24,27 +25,58 @@ export class AdminlistabsenceComponent implements OnInit {
   findformForm: FormGroup;
   submitted = false;
   absencesss:any = [];
-
+  user:any = [];
+  absenceForm: FormGroup;
   absence:any = [];
-  constructor(private apiService: AdminapiabsenceService,private router: Router, private ngZone: NgZone,
+  constructor(private apiService: AdminapiabsenceService,private router: Router, private ngZone: NgZone,private apiService1: AdminapiuserService,
     public fb: FormBuilder,
 ) { 
-
+  this.mainForm();
     this.readabsence();
   }
 
 
+  mainForm() {
+    this.absenceForm = this.fb.group({
+      idemploye: ['', [Validators.required]],
+      datedebut: ['', [Validators.required]],
+      datefin: ['', [Validators.required]],
 
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.apiService1.getUsers().subscribe((data) => {
+      this.user = data;
+     })
+
+  }
   readabsence(){
     this.apiService.getAbsences().subscribe((data) => {
      this.absence = data;
     })    
   }
+  // Getter to access form control
+  get myForm() {
+    return this.absenceForm.controls;
+  }
 
-
-
+  onSubmitssss() {
+    this.submitted = true;
+    if (!this.absenceForm.valid) {
+      return false;
+    } else {
+      return this.apiService.findabsence(this.absenceForm.value).subscribe({
+        complete: () => {
+          console.log('absence finded created!'),
+            this.ngZone.run(() => this.router.navigateByUrl('/adminlistabsence'));
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
+    }
+  }
 
 
   removeabsence(absence, index) {

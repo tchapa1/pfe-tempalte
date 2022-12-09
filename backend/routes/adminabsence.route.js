@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const absenceRoute = express.Router();
+
+const createError = require('http-errors');
+
+
 // absence model
 let absence = require('../models/absence');
 // Add absence
@@ -15,7 +19,7 @@ absenceRoute.route('/create').post((req, res, next) => {
 });
 
 
- absenceRoute.route('/find').post((req, res, next) => {
+ absenceRoute.route('/find').get((req, res, next) => {
     absence.find({idemploye:req.body.idemploye,datedebut:req.body.datedebut,datefin:req.body.datefin},(error, data) => {
       if (error) {
         return next(error)
