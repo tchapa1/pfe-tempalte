@@ -26,7 +26,8 @@ congeRoute.route('/').get((req, res) => {
 
 
 
- congeRoute.route('/find').post((req, res, next) => {
+
+ congeRoute.route('/find').get((req, res, next) => {
     conge.find({idemploye:req.body.idemploye},(error, data) => {
       if (error) {
         return next(error)
@@ -35,7 +36,6 @@ congeRoute.route('/').get((req, res) => {
       }
     })
   })
-
 
 
 

@@ -33,10 +33,14 @@ export class AdminapiprojetService {
 
 
 
-  findprojet(nom: string, description: string, datecreation: string): Observable<any> {
+
+
+
+  findprojet(data): Observable<any> {
     let url = `${this.baseUri}/find`;
-    return this.http.get(`${this.baseUri}/find`);
+    return this.http.get(url, data).pipe(catchError(this.errorMgmt));
   }
+
 
 
 

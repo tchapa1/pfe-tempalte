@@ -34,6 +34,19 @@ userRoute.route('/read/:id').get((req, res) => {
   })
 })
 
+userRoute.route('/find').get((req, res, next) => {
+  user.find({email:req.body.email},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+//   user.find({"email":"admin@yahoo.fr"},(error, data) => {
+//           /.*J.*/
+
 // Update user
 userRoute.route('/update/:id').put((req, res, next) => {
   user.findByIdAndUpdate(req.params.id, {

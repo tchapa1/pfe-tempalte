@@ -6,43 +6,39 @@
 <app-adminmenu></app-adminmenu>
 
 
-
 <br><hr>
+  
+<div class="container">
+
+
+  <form [formGroup]="absenceForm" (ngSubmit)="onSubmitssss()">
 
 
 
-<div class="row justify-content-center">
-  <div class="col-md-4 register-absence">
-    <!-- form card register -->
-    <div class="card-body">
-      <form #findformForm="ngForm" (ngSubmit)="onSubmitss(findformForm)">
+    <div class="form-row">
+      <div class="col">
+        <label for="inputName">idemploye</label>
+        <select class="form-select"  name="idemploye"  formControlName="idemploye">
+          <option>Selectionner idemploye </option>
+          <option *ngFor="let employe of user; let i = index" value="{{employe._id}}">{{employe.email}}</option>
+        </select>
+        <!-- error -->            </div>
 
-
-
-        <div class="form-row">
-          <div class="col">
-              <label for="inputName">ID USER</label>
-              <input class="form-control" type="text" formControlName="idemploye" />
-              <!-- error -->            
-            </div>
-
-        </div>
+    </div>
 
 
 <br><br>
+    <div class="form-group">
 
-
-        <div class="form-group">
-
-          <button class="btn btn-warning btn-lg btn-block" type="submit">
-            Rechercher conge
-          </button>
-        </div>
-      </form>
+      <button class="btn btn-dark btn-lg btn-block" type="submit">
+        Filter
+      </button>
     </div>
-  </div>
-  <!-- form card register -->
+  </form>
+
+
 </div>
+
 
 
 

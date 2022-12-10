@@ -28,8 +28,10 @@ projetRoute.route('/').get((req, res) => {
 ////////////////////
 
 
- projetRoute.route('/find').post((req, res, next) => {
-    projet.find({nom:req.body.nom,description:req.body.description,datecreation:req.body.datecreation},(error, data) => {
+
+
+projetRoute.route('/find').get((req, res, next) => {
+  projet.find({nom:req.body.nom,description:req.body.description,datecreation:req.body.datecreation},(error, data) => {
       if (error) {
         return next(error)
       } else {
@@ -37,6 +39,8 @@ projetRoute.route('/').get((req, res) => {
       }
     })
   })
+
+
 
 
 

@@ -20,16 +20,33 @@ import { NgForm } from '@angular/forms';
 })
 export class RhlistuserComponent implements OnInit {
 
-
+  absenceForm: FormGroup;
   
   findformForm: FormGroup;
   submitted = false;
   
   user:any = [];
   constructor(private apiService: AdminapiuserService,    private router: Router,
-    private ngZone: NgZone) { 
+    private ngZone: NgZone,
+     private apiService1: AdminapiuserService,
+    public fb: FormBuilder,
+    
+    ) { 
+      this.mainForm();
     this.readuser();
   }
+
+  
+  mainForm() {
+    this.absenceForm = this.fb.group({
+      email: ['', [Validators.required]],
+      role: ['', [Validators.required]],
+
+    });
+  }
+
+
+
   ngOnInit() {}
   readuser(){
     this.apiService.getUsers().subscribe((data) => {
@@ -58,22 +75,20 @@ export class RhlistuserComponent implements OnInit {
   });
 }
 
-
-onSubmitss(form: NgForm) {
-  this.submitted = true;
-  if (!this.findformForm.valid) {
-    return false;
-  } else {
-    const email = form.value.email;
-    const role = form.value.role;
-
-      this.apiService.finduser(email,role).subscribe((data) => {
-        this.user = data;
-       }) 
-
-
+  // Getter to access form control
+  get myForm() {
+    return this.absenceForm.controls;
   }
-}
+
+  onSubmitssss() {
+
+
+        this.apiService.finduser(this.absenceForm.value).subscribe((data) => {
+          this.user = data;
+
+        })  
+  }
+
 
 
 

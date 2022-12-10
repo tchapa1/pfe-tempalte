@@ -21,6 +21,10 @@ export class AdmincreateabsenceComponent implements OnInit {
   submitted = false;
   absenceForm: FormGroup;
   absenceProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
+
+  projetForm: FormGroup;
+
+
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -32,6 +36,8 @@ export class AdmincreateabsenceComponent implements OnInit {
     
   }
 
+
+  
   readuser(){
     this.apiService1.getUsers().subscribe((data) => {
      this.user = data;

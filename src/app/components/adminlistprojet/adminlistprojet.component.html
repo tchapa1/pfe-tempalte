@@ -7,54 +7,56 @@
 
 
 
-
-
-
 <br><hr>
+  
+<div class="container">
 
 
-<div class="row justify-content-center">
-  <div class="col-md-4 register-absence">
-    <!-- form card register -->
-    <div class="card-body">
-      <form #findformForm="ngForm" (ngSubmit)="onSubmitss(findformForm)">
+  <form [formGroup]="projetForm" (ngSubmit)="onSubmitssss()">
 
 
 
-        <div class="form-row">
-          <div class="col">
-              <label for="inputName">Nom</label>
-              <input class="form-control" type="text" formControlName="nom" />
-              <!-- error -->            
-            </div>
-          <div class="col">
-            <label for="inputName">Description</label>
-            <input class="form-control" type="text" formControlName="description" />
-            <!-- error -->            
-          </div>
-          <div class="col">
-            <label for="inputName">Date creation</label>
-            <input class="form-control" type="date" formControlName="datecreation" />
-            <!-- error -->            
-          </div>
-        </div>
+
+
+
+    <div class="form-row">
+      <div class="col">
+        <label for="inputName">Nom</label>
+        <input class="form-control" type="text" formControlName="nom" />
+
+      </div>
+
+      <div class="col">
+        <label for="inputName">description</label>
+        <input class="form-control" type="text" formControlName="description" />
+
+      </div>
+
+
+
+
+      <div class="col">
+        <label for="inputName">datecreation</label>
+        <input class="form-control" type="date" formControlName="datecreation" />
+        
+      </div>
+
+
+
+    </div>
 
 
 <br><br>
+    <div class="form-group">
 
-
-        <div class="form-group">
-
-          <button class="btn btn-warning btn-lg btn-block" type="submit">
-            Rechercher Projet
-          </button>
-        </div>
-      </form>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">
+        Filter
+      </button>
     </div>
-  </div>
-  <!-- form card register -->
-</div>
+  </form>
 
+
+</div>
 
 
 

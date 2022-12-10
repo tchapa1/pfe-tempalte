@@ -62,20 +62,12 @@ export class AdminlistabsenceComponent implements OnInit {
   }
 
   onSubmitssss() {
-    this.submitted = true;
-    if (!this.absenceForm.valid) {
-      return false;
-    } else {
-      return this.apiService.findabsence(this.absenceForm.value).subscribe({
-        complete: () => {
-          console.log('absence finded created!'),
-            this.ngZone.run(() => this.router.navigateByUrl('/adminlistabsence'));
-        },
-        error: (e) => {
-          console.log(e);
-        },
-      });
-    }
+
+
+        this.apiService.findabsence(this.absenceForm.value).subscribe((data) => {
+          this.absence = data;
+
+        })  
   }
 
 

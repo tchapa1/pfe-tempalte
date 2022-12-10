@@ -23,6 +23,22 @@ congeRoute.route('/').get((req, res) => {
     }
   })
 })
+
+
+congeRoute.route('/find').get((req, res, next) => {
+  conge.find({idemploye:req.body.idemploye},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+
+
+
+
 // Get single conge
 congeRoute.route('/read/:id').get((req, res) => {
   conge.findById(req.params.id, (error, data) => {

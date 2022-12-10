@@ -8,7 +8,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 
-
+import { AdminapiuserService } from './../../service/adminapiuser.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
@@ -25,14 +25,31 @@ import { NgForm } from '@angular/forms';
 export class AdminlistcongeComponent implements OnInit {
   findformForm: FormGroup;
   submitted = false;
-
-
+  user:any = [];
+  absenceForm: FormGroup;
   conge:any = [];
   constructor(private apiService: AdminapicongeService,    private router: Router,
-    private ngZone: NgZone) { 
+    private ngZone: NgZone,private apiService1: AdminapiuserService,
+    public fb: FormBuilder) { 
+      this.mainForm();
     this.readconge();
   }
-  ngOnInit() {}
+
+  mainForm() {
+    this.absenceForm = this.fb.group({
+      idemploye: ['', [Validators.required]],
+      datedebut: ['', [Validators.required]],
+      datefin: ['', [Validators.required]],
+
+    });
+  }
+
+  ngOnInit() {
+    this.apiService1.getUsers().subscribe((data) => {
+      this.user = data;
+     })
+
+  }
   readconge(){
     this.apiService.getConges().subscribe((data) => {
      this.conge = data;
@@ -60,21 +77,19 @@ export class AdminlistcongeComponent implements OnInit {
   });
 }
 
-
-
-onSubmitss(form: NgForm) {
-  this.submitted = true;
-  if (!this.findformForm.valid) {
-    return false;
-  } else {
-    const idemploye = form.value.idemploye;
-
-      this.apiService.findconge(idemploye).subscribe((data) => {
-        this.conge = data;
-       }) 
-
-
+  // Getter to access form control
+  get myForm() {
+    return this.absenceForm.controls;
   }
+
+
+  onSubmitssss() {
+
+
+    this.apiService.findconge(this.absenceForm.value).subscribe((data) => {
+      this.conge = data;
+
+    })  
 }
 
 

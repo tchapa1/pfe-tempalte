@@ -31,12 +31,12 @@ export class AdminapiuserService {
     return this.http.get(`${this.baseUri}`);
   }
 
-  finduser(email: string,role : string): Observable<any> {
+
+
+  finduser(data): Observable<any> {
     let url = `${this.baseUri}/find`;
-    return this.http.get(`${this.baseUri}/find`);
+    return this.http.get(url, data).pipe(catchError(this.errorMgmt));
   }
-
-
 
 
   // Get User

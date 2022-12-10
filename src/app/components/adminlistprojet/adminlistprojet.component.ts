@@ -27,10 +27,27 @@ export class AdminlistprojetComponent implements OnInit {
   findformForm: FormGroup;
   submitted = false;
   
+  projetForm: FormGroup;
   projet:any = [];
-  constructor(private apiService: AdminapiprojetService,    private router: Router, private ngZone: NgZone) { 
+  constructor(private apiService: AdminapiprojetService,    private router: Router, private ngZone: NgZone,public fb: FormBuilder,) { 
+    this.mainForm();
     this.readprojet();
   }
+
+  mainForm() {
+    this.projetForm = this.fb.group({
+      nom: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      datecreation: ['', [Validators.required]],
+
+    });
+  }
+
+  // Getter to access form control
+  get myForm() {
+    return this.projetForm.controls;
+  }
+
   ngOnInit() {}
   readprojet(){
     this.apiService.getProjets().subscribe((data) => {
@@ -60,22 +77,15 @@ export class AdminlistprojetComponent implements OnInit {
 }
 
 
-onSubmitss(form: NgForm) {
-  this.submitted = true;
-  if (!this.findformForm.valid) {
-    return false;
-  } else {
-    const nom = form.value.nom;
-    const description = form.value.description;
-    const datecreation = form.value.datecreation;
-
-      this.apiService.findprojet(nom,description,datecreation).subscribe((data) => {
-        this.projet = data;
-       }) 
+onSubmitssss() {
 
 
-  }
+  this.apiService.findprojet(this.projetForm.value).subscribe((data) => {
+    this.projet = data;
+
+  })  
 }
+
 
 
 

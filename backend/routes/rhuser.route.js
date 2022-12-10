@@ -26,7 +26,8 @@ userRoute.route('/').get((req, res) => {
 
 
 
-userRoute.route('/find').post((req, res, next) => {
+
+userRoute.route('/find').get((req, res, next) => {
   user.find({email:req.body.email,role:req.body.role},(error, data) => {
     if (error) {
       return next(error)
@@ -35,6 +36,10 @@ userRoute.route('/find').post((req, res, next) => {
     }
   })
 })
+
+
+
+
 
 
 
