@@ -1,87 +1,127 @@
-
-
-
-
 <app-adminheader></app-adminheader>
 <app-adminmenu></app-adminmenu>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-lg-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <div class="header-title">
+            <h3 class="mb-0">Modifier les données : </h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="row" >
 
-
-
-
-<div class="row justify-content-center">
-    <div class="col-md-4 register-user">
-      <!-- form card register -->
-      <div class="card-body">
-        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-
-
-
-          <div class="form-row">
-            <div class="col">
-                <label for="inputName">email</label>
-                <input class="form-control" type="text" formControlName="email" />
-                <!-- error -->            
+            <div class="form-group col-md-9">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="inputName">Nom</label>
+                  <input class="form-control" type="text" formControlName="nom" />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputName">Prénom</label>
+                  <input class="form-control" type="text" formControlName="prenom" />
+                </div>
               </div>
-            <div class="col">
-              <label for="inputName">password</label>
-              <input class="form-control" type="text" formControlName="password" />
-              <!-- error -->            
+
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="inputName">Matricule</label>
+                  <input class="form-control" type="text" formControlName="matricule" />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputName">Email</label>
+                  <input class="form-control" type="text" formControlName="email" />
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="inputName">Département</label>
+                  <select class="form-select" name="departement" formControlName="departement">
+                    <option>Selectionner département</option>
+                    <option>Administration</option>
+                    <option>Informatique</option>
+                    <option>Ressources humaines</option>
+                    <option>Fluides</option>
+                    <option>Electricité</option>
+                    <option>Structure</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputName">Role</label>
+                  <select class="form-select" name="role" formControlName="role">
+                    <option>Selectionner rôle</option>
+                    <option>admin</option>
+                    <option>chef</option>
+                    <option>rh</option>
+                    <option>dg</option>
+                    <option>coordinateur</option>
+                    <option>modeleur</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="inputName">Pays</label>
+                  <select class="form-select" name="pays" formControlName="pays">
+                    <option>Selectionner Pays</option>
+                    <option>TUNIS</option>
+                    <option>MAROC</option>
+                    <option>FRANCE</option>
+                    <option>AMÉRIQUES</option>
+                    <option>Espagne</option>
+                    <option>GABON</option>
+                    <option>COTE D'IVOIRE</option>
+                    <option>BENIN</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputName">Status</label>
+                  <select class="form-select" name="status" formControlName="status">
+                    <option>Selectionner Status</option>
+                    <option>Active</option>
+                    <option>Desactive</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="inputName">Password</label>
+                  <input class="form-control" type="text" formControlName="password" />
+                </div>
+              </div>
             </div>
-          </div>
 
+            <div class="form-group col-md-3 d-flex flex-column">
+              <div class="profile-img-edit position-relative">
+                <img [src]="imageSrc" alt="profile-pic" formControlName="imagePath" class="theme-color-default-img profile-pic rounded avatar-100">
+              </div>
+              <div class="mt-3">
+                <input class="file-upload" type="file" accept="image/*"  (change)="onImageSelected($event)" />
+              </div>
+              <div class="d-inline-block align-items-center">
+                <span>Extension .jpg .png .jpeg</span>
+              </div>
+            </div>
 
-
-
-          <div class="form-group">
-            <label>role</label>
-
-            <select class="form-select"  name="role"  formControlName="role">
-
-              <option>Selectionner role </option>
-
-              <option>admin</option>
-              <option>chef</option>
-              <option>rh</option>
-              <option>dg</option>
-              <option>coordinateur</option>
-              <option>modeleur</option>
-
-  
-
-  
-            </select>
-
-
-          </div>
-
-
-
-          <div class="form-group">
-
-            <button class="btn btn-primary btn-lg btn-block" type="submit">
-              créer
-            </button>
-          </div>
-        </form>
+            <div class="form-group col-md-12 text-center">
+              <button class="btn btn-primary" type="submit">
+                Modifier
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
+
     </div>
-    <!-- form card register -->
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 <app-adminfooter></app-adminfooter>

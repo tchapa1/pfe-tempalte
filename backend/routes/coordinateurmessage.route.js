@@ -1,4 +1,6 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const messageRoute = express.Router();
 // message model
@@ -12,6 +14,18 @@ messageRoute.route('/create').post((req, res, next) => {
       res.json(data)
     }
   })
+
+  const post = new notification({
+    titre: "operation de creation de message",
+    description: "creation message par COORDINATEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
+
 });
 // Get All messages
 messageRoute.route('/').get((req, res) => {
@@ -47,6 +61,18 @@ messageRoute.route('/update/:id').put((req, res, next) => {
       console.log('Data updated successfully')
     }
   })
+
+  const post = new notification({
+    titre: "operation de mise a jour de message",
+    description: "mise a jour message par COORDINATEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
+
 })
 // Delete message
 messageRoute.route('/delete/:id').delete((req, res, next) => {
@@ -59,5 +85,16 @@ messageRoute.route('/delete/:id').delete((req, res, next) => {
       })
     }
   })
+
+  const post = new notification({
+    titre: "operation de suppression de message",
+    description: "suppression message par COORDINATEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+      
 })
 module.exports = messageRoute;

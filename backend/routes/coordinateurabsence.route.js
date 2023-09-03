@@ -1,4 +1,6 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const absenceRoute = express.Router();
 // absence model
@@ -12,6 +14,19 @@ absenceRoute.route('/create').post((req, res, next) => {
       res.json(data)
     }
   })
+
+  const post = new notification({
+    titre: "operation de creation de absence",
+    description: "creation absence par COORDINATEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
+
+
 });
 // Get All absences
 absenceRoute.route('/').get((req, res) => {
@@ -47,6 +62,17 @@ absenceRoute.route('/update/:id').put((req, res, next) => {
       console.log('Data updated successfully')
     }
   })
+
+  const post = new notification({
+    titre: "operation de mise a jour de absence",
+    description: "mise a jour absence par COORDINATEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
 })
 // Delete absence
 absenceRoute.route('/delete/:id').delete((req, res, next) => {
@@ -59,5 +85,15 @@ absenceRoute.route('/delete/:id').delete((req, res, next) => {
       })
     }
   })
+
+  const post = new notification({
+    titre: "operation de suppression de absence",
+    description: "suppression absence par COORDINATEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+      
 })
 module.exports = absenceRoute;

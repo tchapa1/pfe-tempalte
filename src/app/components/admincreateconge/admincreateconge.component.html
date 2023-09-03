@@ -1,7 +1,3 @@
-
-
-
-
 <app-adminheader></app-adminheader>
 <app-adminmenu></app-adminmenu>
 
@@ -9,85 +5,78 @@
 
 
 
-<div class="row justify-content-center">
-    <div class="col-md-4 register-conge">
-      <!-- form card register -->
-      <div class="card-body">
-        <form [formGroup]="congeForm" (ngSubmit)="onSubmit()">
 
-
-          <div class="form-group">
-            <label for="inputName">idemploye</label>
-            <select class="form-select"  name="idemploye"  formControlName="idemploye">
-
-              <option>Selectionner id employe </option>
-
-              <option *ngFor="let employe of user; let i = index" value="{{employe._id}}">{{employe.email}}</option>
-             
-  
-  
-  
-            </select>
-            <!-- error -->
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-lg-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <div class="header-title">
+            <h3 class="mb-0">Remplir les données : </h3>
           </div>
-
-          <div class="form-group">
-            <label for="inputName">description</label>
-            <input class="form-control" type="text" formControlName="description" />
-            <!-- error -->
-          </div>
-          <div class="form-group">
-            <label for="inputName">datedebut</label>
-            <input class="form-control" type="date" formControlName="datedebut" />
-            <!-- error -->
-          </div>
-          <div class="form-group">
-            <label for="inputName">datefin</label>
-            <input class="form-control" type="date" formControlName="datefin" />
-            <!-- error -->
-          </div>
-              <div class="form-group">
-            <label>etat</label>
-
-            <select class="form-select"  name="etat"  formControlName="etat">
-
-              <option>Selectionner etat </option>
-
-              <option>en cours</option>
-              <option>valide</option>
-              <option>non valide</option>
-              <option>en atente</option>
-  
-  
-  
-            </select>
-
-
-          </div>
-
-
-
-                    <div class="form-group">
-
-            <button class="btn btn-success btn-lg btn-block" type="submit">
-              Valider
-            </button>
-          </div>
-        </form>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="congeForm" (ngSubmit)="onSubmit()" class="row">
+            <!-- Première ligne -->
+            <div class="form-group col-md-4">
+              <label for="inputName">Id employe:</label>
+              <input class="form-control" type="text" formControlName="idemploye" />
+              <!-- error -->
+              <div  class="form-control is-invalid" *ngIf="submitted && myForm['idemploye'].errors?.['required']">
+                id employe est obligatoire.....
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Etat:</label>
+              <select class="form-select" name="etat" formControlName="etat">
+                <option>valide</option>
+                <option>non valide</option>
+                <option>en attente</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputName">Solde congé:</label>
+              <input class="form-control" type="text" formControlName="soldeconge" readonly />
+              <!-- error -->
+            </div>
+            <!-- Deuxième ligne -->
+            <div class="form-group col-md-6">
+              <label for="inputName">Date debut:</label>
+              <input class="form-control" type="date" formControlName="datedebut" />
+              <!-- error -->
+              <div  class="form-control is-invalid" *ngIf="submitted && myForm['datedebut'].errors?.['required']">
+                Date debut est obligatoire.....
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputName">Date fin:</label>
+              <input class="form-control" type="date" formControlName="datefin" />
+              <div  class="form-control is-invalid" *ngIf="submitted && myForm['datefin'].errors?.['required']">
+                Date fin est obligatoire.....
+              </div>
+            </div>
+            <!-- Troisième ligne -->
+            <div class="form-group col-md-12">
+              <label for="inputName">Description:</label>
+              <input class="form-control" type="text" formControlName="description" />
+              <!-- error -->
+              <div  class="form-control is-invalid" *ngIf="submitted && myForm['description'].errors?.['required']">
+                description est obligatoire.....
+              </div>
+            </div>
+            <!-- Bouton en milieu -->
+            <div class="form-group text-center col-12">
+              <button class="btn btn-primary" type="submit">
+                Valider
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
+      <!-- form  -->
     </div>
-    <!-- form card register -->
   </div>
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 

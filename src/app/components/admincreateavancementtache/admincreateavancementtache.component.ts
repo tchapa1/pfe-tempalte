@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 import { AdminapiavancementtacheService } from './../../service/adminapiavancementtache.service';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
 import { AdminapitacheService } from './../../service/adminapitache.service';
-
+import { AdminapiprojetService } from './../../service/adminapiprojet.service';
 
 
 @Component({
@@ -16,19 +15,22 @@ import { AdminapitacheService } from './../../service/adminapitache.service';
 })
 export class AdmincreateavancementtacheComponent implements OnInit {
 
-  user:any = [];
+  tache:any = [];
+  projet:any = [];
   submitted = false;
   avancementtacheForm: FormGroup;
-  avancementtacheProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
+
   constructor(
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private apiService: AdminapiavancementtacheService,
     private apiService1: AdminapitacheService,
+    private apiService2: AdminapiprojetService,
   ) {
     this.mainForm();
     this.readprojet();
+    this.readprojetsssss();
   }
 
 
@@ -37,12 +39,19 @@ export class AdmincreateavancementtacheComponent implements OnInit {
 
 readprojet(){
 this.apiService1.getTaches().subscribe((data) => {
- this.user = data;
+ this.tache = data;
 })    
 }
 
 
 
+readprojetsssss(){
+  this.apiService2.getProjets().subscribe((data) => {
+   this.projet = data;
+  })    
+  }
+  
+  
 
   ngOnInit() {}
   mainForm() {
@@ -50,6 +59,7 @@ this.apiService1.getTaches().subscribe((data) => {
       titre: ['', [Validators.required]],
       description: ['', [Validators.required]],
       idtache: ['', [Validators.required]],
+      idprojet: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
 
     });
@@ -59,6 +69,8 @@ this.apiService1.getTaches().subscribe((data) => {
   get myForm() {
     return this.avancementtacheForm.controls;
   }
+
+
   onSubmit() {
     this.submitted = true;
     if (!this.avancementtacheForm.valid) {

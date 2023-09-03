@@ -45,8 +45,9 @@ this.apiService1.getProjets().subscribe((data) => {
       nom: ['', [Validators.required]],
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
-      idprojet: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+      idprojet: " ",
+      etat: " ",
+      idemploye: " ",
 
     });
   }

@@ -1,4 +1,6 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const congeRoute = express.Router();
 // conge model
@@ -12,6 +14,18 @@ congeRoute.route('/create').post((req, res, next) => {
       res.json(data)
     }
   })
+
+  const post = new notification({
+    titre: "operation de creation de conge",
+    description: "creation conge par COORDINATEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
+
 });
 // Get All conges
 congeRoute.route('/').get((req, res) => {
@@ -47,6 +61,18 @@ congeRoute.route('/update/:id').put((req, res, next) => {
       console.log('Data updated successfully')
     }
   })
+
+  const post = new notification({
+    titre: "operation de mise a jour de conge",
+    description: "mise a jour conge par COORDINATEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
+
 })
 // Delete conge
 congeRoute.route('/delete/:id').delete((req, res, next) => {
@@ -59,5 +85,17 @@ congeRoute.route('/delete/:id').delete((req, res, next) => {
       })
     }
   })
+
+  const post = new notification({
+    titre: "operation de suppression de conge",
+    description: "suppression conge par COORDINATEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
+      
 })
 module.exports = congeRoute;

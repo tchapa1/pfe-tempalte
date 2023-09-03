@@ -15,6 +15,8 @@ mongoose
 // Setting up port with express js
 
 
+const affectationgroupeRoute = require('../backend/routes/affectationgroupe.route')
+
 const useruserRoute = require('../backend/routes/user.route')
 
 const adminabsenceRoute = require('../backend/routes/adminabsence.route')
@@ -29,6 +31,8 @@ const adminprofileRoute = require('../backend/routes/adminprofile.route')
 const adminprojetRoute = require('../backend/routes/adminprojet.route')
 const admintacheRoute = require('../backend/routes/admintache.route')
 const adminuserRoute = require('../backend/routes/adminuser.route')
+const admincalandarRoute = require('../backend/routes/admincalandar.route')
+
 
 const chefabsenceRoute = require('../backend/routes/chefabsence.route')
 const chefavancementprojetRoute = require('../backend/routes/chefavancementprojet.route')
@@ -116,8 +120,14 @@ app.use(
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'dist/mean-stack-crud-app')))
 app.use('/', express.static(path.join(__dirname, 'dist/mean-stack-crud-app')))
+app.use('/uploads', express.static('uploads'));
 
 
+
+
+
+
+app.use('/apiaffectationgroupe', affectationgroupeRoute)
 
 
 
@@ -134,7 +144,7 @@ app.use('/adminapiprofile', adminprofileRoute)
 app.use('/adminapiprojet', adminprojetRoute)
 app.use('/adminapitache', admintacheRoute)
 app.use('/adminapiuser', adminuserRoute)
-
+app.use('/adminapicalandar', admincalandarRoute)
 
 /////////////////////////////////////////
 

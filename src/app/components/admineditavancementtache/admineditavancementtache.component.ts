@@ -1,12 +1,14 @@
 
 
 
-
+import { Component, OnInit, NgZone } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AdminapitacheService } from './../../service/adminapitache.service';
+import { AdminapiprojetService } from './../../service/adminapiprojet.service';
 import { Avancementtache } from './../../model/avancementtache';
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminapiavancementtacheService } from './../../service/adminapiavancementtache.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -16,16 +18,44 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AdmineditavancementtacheComponent implements OnInit {
 
+
+  tache:any = [];
+  projet:any = [];
   submitted = false;
   editForm: FormGroup;
-  avancementtacheData: Avancementtache[];
   avancementtacheProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
+  avancementtacheData: Avancementtache[];
+
   constructor(
     public fb: FormBuilder,
-    private actRoute: ActivatedRoute,
+    private router: Router,
+    private ngZone: NgZone,
     private apiService: AdminapiavancementtacheService,
-    private router: Router
-  ) {}
+    private apiService1: AdminapitacheService,
+    private apiService2: AdminapiprojetService,
+    private actRoute: ActivatedRoute,
+  ) {
+    this.readprojet();
+    this.readprojetsssss();
+  }
+  
+
+  readprojet(){
+    this.apiService1.getTaches().subscribe((data) => {
+    this.tache = data;
+    })    
+    }
+    
+    
+    
+    readprojetsssss(){
+    this.apiService2.getProjets().subscribe((data) => {
+     this.projet = data;
+    })    
+    }
+    
+
+
   ngOnInit() {
     this.updateavancementtache();
     let id = this.actRoute.snapshot.paramMap.get('id');
@@ -37,12 +67,17 @@ export class AdmineditavancementtacheComponent implements OnInit {
       datecreation: ['', [Validators.required]],
     });
   }
+
+
+
   // Choose options with select-dropdown
 
   // Getter to access form control
   get myForm() {
     return this.editForm.controls;
   }
+
+
   getavancementtache(id) {
     this.apiService.getAvancementtache(id).subscribe((data) => {
       this.editForm.setValue({
@@ -54,6 +89,8 @@ export class AdmineditavancementtacheComponent implements OnInit {
       });
     });
   }
+
+
   updateavancementtache() {
     this.editForm = this.fb.group({
       titre: ['', [Validators.required]],
@@ -62,6 +99,8 @@ export class AdmineditavancementtacheComponent implements OnInit {
       datecreation: ['', [Validators.required]],
     });
   }
+
+
   onSubmit() {
     this.submitted = true;
     if (!this.editForm.valid) {

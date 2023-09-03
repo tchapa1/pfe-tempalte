@@ -1,0 +1,95 @@
+<app-adminheader></app-adminheader>
+<app-adminmenu></app-adminmenu>
+
+
+
+
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card text-center">
+      <div class="card-body text-center">
+        <h4 class="mb-0 text-center">Calendrier</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title mb-3">
+        <div>
+          <label>
+            <input type='checkbox' [checked]='calendarOptions.weekends' (change)='handleWeekendsToggle()' />
+            Seulement jour de travaille
+          </label>
+        </div>
+      </div>
+      <div class="card-body">
+        <full-calendar *ngIf="calendarVisible" [options]="calendarOptions" [events]="calandar"></full-calendar>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-lg-12">
+      <div class="card">
+        <!-- No data message -->
+        <!-- <p *ngIf="calandar.length <= 0" id="htmlData" class="no-data text-center">There is no calandar added yet!</p>   -->
+        <div class="card-header d-flex justify-content-between">
+          <div class="header-title">
+            <h4 class="card-title">Tous les jours fériés ({{calandar.length}}) </h4>
+          </div>
+          <div class=" justify-right">
+            <button class="btn btn-primary" (click)="openPDF()">Download</button>
+          </div>
+        </div>
+        <div class="card-body px-0">
+          <div class="table-responsive  border-bottom my-3">
+            <table id="calandar-list-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="width: 400px;">Title</th>
+                  <th style="width: 200px;">Date</th>
+                  <th style="width: 100px;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let calandar of calandar">
+                  <td>{{calandar.title}}</td>
+                  <td>{{calandar.start}}</td>
+                  <td>
+                    <div class="flex align-items-center list-user-action">
+                      <a class="btn btn-sm btn-icon btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Delete" (click)="removecalandar(calandar._id)">
+                        <span class="btn-inner">
+                          <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
+                            <path
+                              d="M19.3248 9.46826C19.3248 9.46826 18.7818 16.2033 18.4668 19.0403C18.3168 20.3953 17.4798 21.1893 16.1088 21.2143C13.4998 21.2613 10.8878 21.2643 8.27979 21.2093C6.96079 21.1823 6.13779 20.3783 5.99079 19.0473C5.67379 16.1853 5.13379 9.46826 5.13379 9.46826"
+                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path d="M20.708 6.23975H3.75" stroke="currentColor" stroke-width="1.5"
+                              stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path
+                              d="M17.4406 6.23973C16.6556 6.23973 15.9796 5.68473 15.8256 4.91573L15.5826 3.69973C15.4326 3.13873 14.9246 2.75073 14.3456 2.75073H10.1126C9.53358 2.75073 9.02558 3.13873 8.87558 3.69973L8.63258 4.91573C8.47858 5.68473 7.80258 6.23973 7.01758 6.23973"
+                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                          </svg>
+                        </span>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+    <app-adminfooter></app-adminfooter>

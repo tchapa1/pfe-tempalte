@@ -1,4 +1,6 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const avancementprojetRoute = express.Router();
 // avancementprojet model
@@ -12,6 +14,13 @@ avancementprojetRoute.route('/create').post((req, res, next) => {
       res.json(data)
     }
   })
+  const post = new notification({
+    titre: "operation de creation de avancementprojet",
+    description: "creation avancementprojet par MODELEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
 });
 // Get All avancementprojets
 avancementprojetRoute.route('/').get((req, res) => {
@@ -47,6 +56,13 @@ avancementprojetRoute.route('/update/:id').put((req, res, next) => {
       console.log('Data updated successfully')
     }
   })
+  const post = new notification({
+    titre: "operation de mise a jour de avancementprojet",
+    description: "mise a jour avancementprojet par MODELEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
 })
 // Delete avancementprojet
 avancementprojetRoute.route('/delete/:id').delete((req, res, next) => {
@@ -59,5 +75,12 @@ avancementprojetRoute.route('/delete/:id').delete((req, res, next) => {
       })
     }
   })
+  const post = new notification({
+    titre: "operation de suppression de avancementprojet",
+    description: "suppression avancementprojet par MODELEUR",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
 })
 module.exports = avancementprojetRoute;

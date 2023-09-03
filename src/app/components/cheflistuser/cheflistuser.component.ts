@@ -15,6 +15,18 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./cheflistuser.component.css']
 })
 export class CheflistuserComponent implements OnInit {
+  
+
+
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+
+
   findformForm: FormGroup;
   submitted = false;
   
@@ -29,6 +41,19 @@ export class CheflistuserComponent implements OnInit {
      this.user = data;
     })    
   }
+  
+
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readuser();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readuser();
+  }
+
   removeuser(user, index) {
     if(window.confirm('Are you sure?')) {
         this.apiService.deleteUser(user._id).subscribe((data) => {
@@ -52,22 +77,7 @@ export class CheflistuserComponent implements OnInit {
 }
 
 
-onSubmitss() {
-  this.submitted = true;
-  if (!this.findformForm.valid) {
-    return false;
-  } else {
-    return this.apiService.createUser(this.findformForm.value).subscribe({
-      complete: () => {
-        console.log('absence successfully created!'),
-          this.ngZone.run(() => this.router.navigateByUrl('/adminlistabsence'));
-      },
-      error: (e) => {
-        console.log(e);
-      },
-    });
-  }
-}
+
 
 
 

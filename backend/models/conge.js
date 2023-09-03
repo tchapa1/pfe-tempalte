@@ -1,7 +1,4 @@
 
-
-
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // Define collection and schema
@@ -19,6 +16,9 @@ let conge = new Schema({
       type: String
    },
    etat: {
+      type: String
+   },
+   soldeconge: {
       type: String
    }
 }, {

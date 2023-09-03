@@ -13,6 +13,13 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./coordinateurlistprojet.component.css']
 })
 export class CoordinateurlistprojetComponent implements OnInit {
+  
+
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
 
 
   
@@ -27,6 +34,20 @@ export class CoordinateurlistprojetComponent implements OnInit {
      this.projet = data;
     })    
   }
+  
+
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readprojet();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readprojet();
+  }
+
+
   removeprojet(projet, index) {
     if(window.confirm('Are you sure?')) {
         this.apiService.deleteProjet(projet._id).subscribe((data) => {

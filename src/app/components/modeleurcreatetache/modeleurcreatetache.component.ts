@@ -48,6 +48,7 @@ export class ModeleurcreatetacheComponent implements OnInit {
       datecreation: ['', [Validators.required]],
       idprojet: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      idemploye: ['', [Validators.required]],
 
     });
   }

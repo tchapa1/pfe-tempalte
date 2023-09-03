@@ -53,8 +53,9 @@ export class AdmincreateabsenceComponent implements OnInit {
       idemploye: ['', [Validators.required]],
       description: ['', [Validators.required]],
       datedebut: ['', [Validators.required]],
-      datefin: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+      etat: "en cours",
+      heuredepart: ['', [Validators.required]],
+      heureretour: ['', [Validators.required]],
 
     });
   }

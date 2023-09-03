@@ -8,7 +8,7 @@ import { AdminapinotificationService } from './../../service/adminapinotificatio
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-
+declare var $: any;
 
 @Component({
   selector: 'app-adminlistnotification',
@@ -17,27 +17,34 @@ import html2canvas from 'html2canvas';
 })
 export class AdminlistnotificationComponent implements OnInit {
   
-  notif:any = [];
-  constructor(private apiService: AdminapinotificationService) { 
-    this.readnotif();
-  }
+
   ngOnInit() {}
   readnotif(){
     this.apiService.getNotifications().subscribe((data) => {
      this.notif = data;
     })    
   }
-  removenotif(notif, index) {
-    if(window.confirm('Are you sure?')) {
-        this.apiService.deleteNotification(notif._id).subscribe((data) => {
-          this.notif.splice(index, 1);
-        }
-      )    
-    }
+
+  notif:any = [];
+  constructor(private apiService: AdminapinotificationService) { 
+    this.readnotif();
   }
 
+  ngAfterViewInit() {
+    $(document).ready(function() {
+      // Initialisation de DataTables avec la fonctionnalité de recherche et de pagination
+      $('#notif-list-table').DataTable({
+        searching: true, // Activer la recherche
+        lengthMenu: [10, 50, 100], // Nombre d'éléments par page
+        pageLength: 10 // Nombre d'éléments affichés par défaut par page
+        // Autres options de configuration de DataTables, le cas échéant
+      });
+    });
+  }
+
+
   public openPDF(): void {
-  let DATA: any = document.getElementById('htmlData');
+  let DATA: any = document.getElementById('notif-list-table');
   html2canvas(DATA).then((canvas) => {
     let fileWidth = 208;
     let fileHeight = (canvas.height * fileWidth) / canvas.width;

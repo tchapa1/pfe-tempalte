@@ -55,6 +55,7 @@ readuser(){
       datedebut: ['', [Validators.required]],
       datefin: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      soldeconge: ['', [Validators.required]],
 
     });
   }

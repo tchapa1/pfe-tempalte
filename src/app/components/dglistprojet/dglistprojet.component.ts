@@ -19,21 +19,81 @@ import { Router } from '@angular/router';
   styleUrls: ['./dglistprojet.component.css']
 })
 export class DglistprojetComponent implements OnInit {
+  
+
+
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+
+
+
 
   
   findformForm: FormGroup;
   submitted = false;
   
   projet:any = [];
-  constructor(private apiService: AdminapiprojetService,private router: Router, private ngZone: NgZone) { 
+
+  projetfind:any = [];
+  constructor(private apiService: AdminapiprojetService,private router: Router, private ngZone: NgZone,public fb: FormBuilder,) { 
     this.readprojet();
+    this.mainForm();
   }
+
+  mainForm() {
+    this.findformForm = this.fb.group({
+      nom: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      datecreation: ['', [Validators.required]],
+
+    });
+  }
+
+  onSubmitssss() {
+
+
+    let creatorId = []
+    for (let i in this.projet) {
+      if(this.findformForm.value.nom==this.projet[i].nom)
+           this.projetfind.push(this.projet[i])
+
+      if(this.findformForm.value.description==this.projet[i].description)
+           this.projetfind.push(this.projet[i])
+
+      if(this.findformForm.value.datecreation==this.projet[i].datecreation)
+           this.projetfind.push(this.projet[i])
+
+
+
+    }
+    this.projet =this.projetfind;
+  }
+
   ngOnInit() {}
   readprojet(){
     this.apiService.getProjets().subscribe((data) => {
      this.projet = data;
     })    
   }
+  
+
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readprojet();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readprojet();
+  }
+
+
   removeprojet(projet, index) {
     if(window.confirm('Are you sure?')) {
         this.apiService.deleteProjet(projet._id).subscribe((data) => {

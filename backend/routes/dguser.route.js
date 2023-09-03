@@ -1,4 +1,6 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const userRoute = express.Router();
 // user model
@@ -12,6 +14,18 @@ userRoute.route('/create').post((req, res, next) => {
       res.json(data)
     }
   })
+
+
+
+  const post = new notification({
+    titre: "operation de creation de user",
+    description: "creation user par DG",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
 });
 // Get All users
 userRoute.route('/').get((req, res) => {
@@ -47,6 +61,19 @@ userRoute.route('/update/:id').put((req, res, next) => {
       console.log('Data updated successfully')
     }
   })
+
+  const post = new notification({
+    titre: "operation de mise a jour de user",
+    description: "mise a jour user par DG",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
+
+
 })
 // Delete user
 userRoute.route('/delete/:id').delete((req, res, next) => {
@@ -59,5 +86,16 @@ userRoute.route('/delete/:id').delete((req, res, next) => {
       })
     }
   })
+
+  const post = new notification({
+    titre: "operation de suppression de user",
+    description: "suppression user par DG",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+      
 })
 module.exports = userRoute;

@@ -35,6 +35,7 @@ export class DgeditcongeComponent implements OnInit {
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      soldeconge: ['', [Validators.required]],
     });
   }
   // Choose options with select-dropdown
@@ -50,6 +51,7 @@ export class DgeditcongeComponent implements OnInit {
         description: data['description'],
         datecreation: data['datecreation'],
         etat: data['etat'],
+        soldeconge: data['soldeconge'],
       });
     });
   }
@@ -59,6 +61,7 @@ export class DgeditcongeComponent implements OnInit {
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      soldeconge: ['', [Validators.required]],
     });
   }
   onSubmit() {

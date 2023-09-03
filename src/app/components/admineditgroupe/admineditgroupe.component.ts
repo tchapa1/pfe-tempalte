@@ -19,30 +19,35 @@ export class AdmineditgroupeComponent implements OnInit {
   submitted = false;
   editForm: FormGroup;
   groupeData: Groupe[];
-  groupeProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
+
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private apiService: AdminapigroupeService,
     private router: Router
   ) {}
+
+
   ngOnInit() {
     this.updategroupe();
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getgroupe(id);
     this.editForm = this.fb.group({
-      nom: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      datecreation: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+      nom: [''],
+      description: [''],
+      datecreation: [''],
+      etat: [''],
     });
   }
+
   // Choose options with select-dropdown
 
   // Getter to access form control
   get myForm() {
     return this.editForm.controls;
   }
+
+  
   getgroupe(id) {
     this.apiService.getGroupe(id).subscribe((data) => {
       this.editForm.setValue({
@@ -55,10 +60,10 @@ export class AdmineditgroupeComponent implements OnInit {
   }
   updategroupe() {
     this.editForm = this.fb.group({
-      nom: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      datecreation: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+      nom: [''],
+      description: [''],
+      datecreation: [''],
+      etat: [''],
     });
   }
   onSubmit() {

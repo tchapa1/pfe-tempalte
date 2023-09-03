@@ -2,7 +2,7 @@
 
 
 import { Router } from '@angular/router';
-import { AdminapicongeService } from './../../service/adminapiconge.service';
+import { RhapicongeService } from './../../service/rhapiconge.service';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AdminapiuserService } from './../../service/adminapiuser.service';
@@ -24,7 +24,7 @@ export class RhcreatecongeComponent implements OnInit {
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private apiService: AdminapicongeService,
+    private apiService: RhapicongeService,
     private apiService1: AdminapiuserService
 
   ) {
@@ -48,6 +48,7 @@ export class RhcreatecongeComponent implements OnInit {
       datedebut: ['', [Validators.required]],
       datefin: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      soldeconge: ['', [Validators.required]],
 
     });
   }

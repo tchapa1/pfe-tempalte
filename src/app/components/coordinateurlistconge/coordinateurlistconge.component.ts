@@ -1,12 +1,17 @@
 
 
 
-import { Component, OnInit } from '@angular/core';
 import { AdminapicongeService } from './../../service/adminapiconge.service';
 
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
+import { AdminapiuserService } from './../../service/adminapiuser.service';
+
+
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coordinateurlistconge',
@@ -15,11 +20,72 @@ import html2canvas from 'html2canvas';
 })
 export class CoordinateurlistcongeComponent implements OnInit {
   
+
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+
+  
   conge:any = [];
-  constructor(private apiService: AdminapicongeService) { 
+  congefind:any = [];
+
+
+  findformForm: FormGroup;
+  submitted = false;
+  user:any = [];
+  absenceForm: FormGroup;
+  constructor(private apiService: AdminapicongeService,private apiService1: AdminapiuserService,
+    public fb: FormBuilder) { 
+    this.readconge();
+    this.mainForm();
+  }
+  mainForm() {
+    this.absenceForm = this.fb.group({
+      idemploye: ['', [Validators.required]],
+      datedebut: ['', [Validators.required]],
+      datefin: ['', [Validators.required]],
+
+    });
+  }
+
+  ngOnInit() {
+    this.apiService1.getUsers().subscribe((data) => {
+      this.user = data;
+     })
+
+  }
+
+
+
+  onTableDataChange(event: any) {
+    this.page = event;
     this.readconge();
   }
-  ngOnInit() {}
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readconge();
+  }
+
+
+
+  
+  onSubmitssss() {
+
+    let creatorId = []
+    for (let i in this.conge) {
+      if(this.absenceForm.value.idemploye==this.conge[i].idemploye)
+           this.congefind.push(this.conge[i])
+
+    }
+    this.conge =this.congefind;
+}
+
+
   readconge(){
     this.apiService.getConges().subscribe((data) => {
      this.conge = data;

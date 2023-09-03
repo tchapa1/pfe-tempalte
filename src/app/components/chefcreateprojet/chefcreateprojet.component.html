@@ -5,7 +5,11 @@
 <app-chefheader></app-chefheader>
 <app-chefmenu></app-chefmenu>
 
-
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+  
+  
 
 <div class="row justify-content-center">
     <div class="col-md-4 register-projet">
@@ -18,16 +22,37 @@
             <label for="inputName">nom</label>
             <input class="form-control" type="text" formControlName="nom" />
             <!-- error -->
+            <div
+                    class="invalid-feedback"
+                    *ngIf="submitted && myForm['nom'].errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                  nom est obligatoire.....
+                  </div>
           </div>
           <div class="form-group">
             <label for="inputName">description</label>
             <input class="form-control" type="text" formControlName="description" />
             <!-- error -->
+            <div
+                    class="invalid-feedback"
+                    *ngIf="submitted && myForm['description'].errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                  description est obligatoire.....
+                  </div>
           </div>
           <div class="form-group">
             <label for="inputName">datecreation</label>
             <input class="form-control" type="date" formControlName="datecreation" />
             <!-- error -->
+            <div
+                    class="invalid-feedback"
+                    *ngIf="submitted && myForm['datecreation'].errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                  datecreation est obligatoire.....
+                  </div>
           </div>
 
               <div class="form-group">
@@ -50,6 +75,36 @@
           </div>
 
 
+          <div class="form-group">
+            <label for="inputName">idemploye</label>
+            <input class="form-control" type="text" formControlName="idemploye" />
+            <!-- error -->
+            <div
+                    class="invalid-feedback"
+                    *ngIf="submitted && myForm['idemploye'].errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                  idemploye est obligatoire.....
+                  </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputName">nbheures</label>
+            <input class="form-control" type="text" formControlName="nbheures" />
+            <!-- error -->
+            <div
+                    class="invalid-feedback"
+                    *ngIf="submitted && myForm['nbheures'].errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                  nbheures est obligatoire.....
+                  </div>
+          </div>
+
+
+          
+
+
 
                     <div class="form-group">
 
@@ -63,6 +118,9 @@
     <!-- form card register -->
   </div>
 
+</div>
+</div>
+</div>
 
 
 

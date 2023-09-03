@@ -1,4 +1,6 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const avancementtacheRoute = express.Router();
 // avancementtache model
@@ -12,6 +14,10 @@ avancementtacheRoute.route('/create').post((req, res, next) => {
       res.json(data)
     }
   })
+
+
+
+
 });
 // Get All avancementtaches
 avancementtacheRoute.route('/').get((req, res) => {
@@ -47,17 +53,42 @@ avancementtacheRoute.route('/update/:id').put((req, res, next) => {
       console.log('Data updated successfully')
     }
   })
+
+
+  const post = new notification({
+    titre: "operation de mise a jour de avancementtache",
+    description: "mise a jour avancementtache par ADMIN",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
 })
 // Delete avancementtache
 avancementtacheRoute.route('/delete/:id').delete((req, res, next) => {
-  avancementtache.findOneAndRemove(req.params.id, (error, data) => {
+  avancementtache.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
       res.status(200).json({
         msg: data
-      })
+      });
     }
+  });
+
+  const post = new notification({
+    titre: "operation de suppression de avancementtache",
+    description: "supression avancementtache par ADMIN",
+    datecreation: new Date(),
+    etat: "en cours",
   })
+  post.save();
+
+
+
+
+
 })
 module.exports = avancementtacheRoute;

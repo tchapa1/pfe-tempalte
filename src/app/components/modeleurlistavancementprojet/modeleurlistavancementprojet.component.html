@@ -5,6 +5,12 @@
 <app-modeleurheader></app-modeleurheader>
 <app-modeleurmenu></app-modeleurmenu>
 
+
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+  <br><hr>
+
 <div class="container">
     <button class="btn btn-lg btn-success" routerLink="/modeleurcreeravancementprojet/">create new</button>&nbsp;
     <button class="btn btn-lg btn-info" (click)="openPDF()">Download PDF</button>&nbsp;
@@ -15,7 +21,7 @@
       <!-- No data message -->
       <p *ngIf="avancementprojet.length <= 0" class="no-data text-center">There is no avancementprojet added yet!</p>
       <!-- avancementprojet list -->
-      <table class="table table-bordered" *ngIf="avancementprojet.length > 0">
+      <table class="table table-bordered" id="htmlData" *ngIf="avancementprojet.length > 0">
         <thead class="table-success">
           <tr>
             <th scope="col">titre</th>
@@ -45,15 +51,11 @@
       </table>
     </div>
   
-  
-
-
-
-
-
-
-
-
+    
+    <br><hr>
+  </div>
+</div>
+</div>
 
 
 

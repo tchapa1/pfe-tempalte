@@ -1,6 +1,5 @@
 
 
-
 import { Absence } from './../../model/absence';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,7 +14,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AdmindetailabsenceComponent implements OnInit {
 
   submitted = false;
-  editForm: FormGroup;
+  detailForm: FormGroup;
   absenceData: Absence[];
   absenceProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
   constructor(
@@ -25,10 +24,10 @@ export class AdmindetailabsenceComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {
-    this.updateabsence();
+    
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getabsence(id);
-    this.editForm = this.fb.group({
+    this.detailForm = this.fb.group({
       idemploye: ['', [Validators.required]],
       description: ['', [Validators.required]],
       datedebut: ['', [Validators.required]],
@@ -40,11 +39,11 @@ export class AdmindetailabsenceComponent implements OnInit {
 
   // Getter to access form control
   get myForm() {
-    return this.editForm.controls;
+    return this.detailForm.controls;
   }
   getabsence(id) {
     this.apiService.getAbsence(id).subscribe((data) => {
-      this.editForm.setValue({
+      this.detailForm.setValue({
         idemploye: data['idemploye'],
         description: data['description'],
         datedebut: data['datedebut'],
@@ -53,23 +52,15 @@ export class AdmindetailabsenceComponent implements OnInit {
       });
     });
   }
-  updateabsence() {
-    this.editForm = this.fb.group({
-      idemploye: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      datedebut: ['', [Validators.required]],
-      datefin: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
-    });
-  }
+
   onSubmit() {
     this.submitted = true;
-    if (!this.editForm.valid) {
+    if (!this.detailForm.valid) {
       return false;
     } else {
       if (window.confirm('Are you sure?')) {
         let id = this.actRoute.snapshot.paramMap.get('id');
-        this.apiService.updateAbsence(id, this.editForm.value).subscribe({
+        this.apiService.updateAbsence(id, this.detailForm.value).subscribe({
           complete: () => {
             this.router.navigateByUrl('/adminlistabsence');
             console.log('Content updated successfully!');

@@ -20,7 +20,14 @@ let absence = new Schema({
    },
    etat: {
       type: String
+   },
+   heuredepart: {
+      type: String
+   },
+   heureretour: {
+      type: String
    }
+
 }, {
    collection: 'absences'
 })

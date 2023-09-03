@@ -25,42 +25,57 @@
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/css/app.min.css",
-"src/assets/css/style.css",
-"src/assets/css/components.css",
-"src/assets/bundles/datatables/datatables.min.css",
-"src/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css",
-"src/assets/css/custom.css" 
+              "src/assets/css/custom.css",
+
+              "src/assets/css/customizer.min.css",
+
+
+
+              "src/assets/css/dark.min.css",
+              "src/assets/css/hope-ui.css",
+              "src/assets/css/hope-ui.min.css",
+
+              "src/assets/css/rtl.min.css",
+              "src/assets/css/core/libs.min.css",
+
+              "src/assets/vendor/aos/dist/aos.css"
+              
+
+
             ],
             "scripts": [
 
+              "src/assets/js/hope-ui.js",
 
-              "src/assets/js/app.min.js",
-              "src/assets/bundles/apexcharts/apexcharts.min.js",
-              "src/assets/js/page/index.js",
-              "src/assets/bundles/datatables/datatables.min.js",
-              "src/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js",
-              "src/assets/bundles/datatables/export-tables/dataTables.buttons.min.js",
-              "src/assets/bundles/datatables/export-tables/buttons.flash.min.js",
-              "src/assets/bundles/datatables/export-tables/jszip.min.js",
-              "src/assets/bundles/datatables/export-tables/pdfmake.min.js",
-              "src/assets/bundles/datatables/export-tables/vfs_fonts.js",
-              "src/assets/bundles/datatables/export-tables/buttons.print.min.js",
-              "src/assets/js/page/datatables.js",
-               "src/assets/js/app.min.js",
-  "src/assets/bundles/datatables/datatables.min.js",
-  "src/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js",
-  "src/assets/bundles/datatables/export-tables/dataTables.buttons.min.js",
-  "src/assets/bundles/datatables/export-tables/buttons.flash.min.js",
-  "src/assets/bundles/datatables/export-tables/jszip.min.js",
-  "src/assets/bundles/datatables/export-tables/pdfmake.min.js",
-  "src/assets/bundles/datatables/export-tables/vfs_fonts.js",
-  "src/assets/bundles/datatables/export-tables/buttons.print.min.js",
-  "src/assets/js/page/datatables.js",
-  "src/assets/js/scripts.js",
-  "src/assets/js/custom.js"
+              "src/assets/js/core/external.min.js",
+              "src/assets/js/core/libs.min.js",
+
+              "src/assets/js/charts/widgetcharts.js",
+              "src/assets/js/charts/vectore-chart.js",
+              "src/assets/js/charts/dashboard.js",
+              "src/assets/js/charts/apexcharts.js",
+              
+              "src/assets/js/plugins/calender.js",
+              "src/assets/js/plugins/circle-progress.js",
+              "src/assets/js/plugins/countdown.js",
+              "src/assets/js/plugins/flatpickr.js",
+              "src/assets/js/plugins/form-wizard.js",
+              "src/assets/js/plugins/fslightbox.js",
+              "src/assets/js/plugins/kanban.js",
+              "src/assets/js/plugins/prism.mini.js",
+              "src/assets/js/plugins/setting.js",
+              "src/assets/js/plugins/slider-tabs.js",
+              
+
+              "src/assets/vendor/moment.min.js",
 
 
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.min.js",
+              "node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"
+          
+              
             ]
           },
           "configurations": {
@@ -73,8 +88,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "20mb"
                 }
               ],
               "fileReplacements": [
@@ -96,7 +111,7 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
+        "serve": {      
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {

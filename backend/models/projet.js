@@ -20,6 +20,12 @@ let projet = new Schema({
    },
    etat: {
       type: String
+   },
+   idgroupe: {
+      type: String
+   },
+   nbheures: {
+      type: String
    }
 }, {
    collection: 'projets'

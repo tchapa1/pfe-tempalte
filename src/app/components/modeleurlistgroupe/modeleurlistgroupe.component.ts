@@ -17,6 +17,18 @@ import html2canvas from 'html2canvas';
 })
 export class ModeleurlistgroupeComponent implements OnInit {
   
+
+
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+
+
+  
   groupe:any = [];
   constructor(private apiService: AdminapigroupeService) { 
     this.readgroupe();
@@ -27,6 +39,18 @@ export class ModeleurlistgroupeComponent implements OnInit {
      this.groupe = data;
     })    
   }
+  
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readgroupe();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readgroupe();
+  }
+
+
   removegroupe(groupe, index) {
     if(window.confirm('Are you sure?')) {
         this.apiService.deleteGroupe(groupe._id).subscribe((data) => {

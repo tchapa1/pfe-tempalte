@@ -1,8 +1,14 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const projetRoute = express.Router();
 // projet model
 let projet = require('../models/projet');
+
+
+
+
 // Add projet
 projetRoute.route('/create').post((req, res, next) => {
   projet.create(req.body, (error, data) => {
@@ -12,7 +18,47 @@ projetRoute.route('/create').post((req, res, next) => {
       res.json(data)
     }
   })
+
+  const post = new notification({
+    titre: "operation de creation de projet",
+    description: "creation projet par ADMIN",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+  
 });
+
+
+
+
+
+
+///////////////
+
+
+
+
+//////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Get All projets
 projetRoute.route('/').get((req, res) => {
   projet.find((error, data) => {
@@ -31,7 +77,7 @@ projetRoute.route('/').get((req, res) => {
 
 
 projetRoute.route('/find').get((req, res, next) => {
-  projet.find({nom:req.body.nom,description:req.body.description,datecreation:req.body.datecreation},(error, data) => {
+  projet.find({"nom":/req.body.nom/,"description":/req.body.description/,"datecreation":/req.body.datecreation/},(error, data) => {
       if (error) {
         return next(error)
       } else {
@@ -77,17 +123,39 @@ projetRoute.route('/update/:id').put((req, res, next) => {
       console.log('Data updated successfully')
     }
   })
+
+
+  const post = new notification({
+    titre: "operation de mis a jour de projet",
+    description: "mise a jour de projet par ADMIN",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
+
 })
+
 // Delete projet
 projetRoute.route('/delete/:id').delete((req, res, next) => {
-  projet.findOneAndRemove(req.params.id, (error, data) => {
+  projet.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
       res.status(200).json({
         msg: data
-      })
+      });
     }
+  });
+
+  const post = new notification({
+    titre: "operation de suppression de projet",
+    description: "suppression projet par ADMIN",
+    datecreation: new Date(),
+    etat: "en cours",
   })
+  post.save();
 })
 module.exports = projetRoute;

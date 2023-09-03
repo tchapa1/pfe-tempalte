@@ -5,11 +5,12 @@
 <app-rhheader></app-rhheader>
 <app-rhmenu></app-rhmenu>
 
-
-
-
-
-
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+  <br><hr>
+  
+      
 <div class="container">
     <button class="btn btn-lg btn-success" routerLink="/rhcreerprojet/">create new</button>&nbsp;
     <button class="btn btn-lg btn-info" (click)="openPDF()">Download PDF</button>&nbsp;
@@ -21,7 +22,7 @@
       <!-- No data message -->
       <p *ngIf="projet.length <= 0" class="no-data text-center">There is no projet added yet!</p>
       <!-- projet list -->
-      <table class="table table-bordered" *ngIf="projet.length > 0">
+      <table class="table table-bordered" id="htmlData" *ngIf="projet.length > 0">
         <thead class="table-success">
           <tr>
             <th scope="col">Name</th>
@@ -33,7 +34,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let projet of projet; let i = index">
+         
+            <tr *ngFor="
+            let projet of projet
+              | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index
+          " >
+          
             <td>{{projet.nom}}</td>
             <td>{{projet.description}}</td>
             <td>{{projet.datecreation}}</td>
@@ -51,13 +63,24 @@
           </tr>
         </tbody>
       </table>
+
+
+      <div class="d-flex justify-content-center">
+        <pagination-controls
+          previousLabel="Prev"
+          nextLabel="Next"
+          (pageChange)="onTableDataChange($event)"
+        >
+        </pagination-controls>
+      </div>
+
+
     </div>
   
-  
-
-
-
-
+    <br><hr>
+      </div>
+  </div>
+  </div>
 
 
 

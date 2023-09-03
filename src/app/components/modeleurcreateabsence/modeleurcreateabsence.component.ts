@@ -32,8 +32,10 @@ export class ModeleurcreateabsenceComponent implements OnInit {
       idemploye: ['', [Validators.required]],
       description: ['', [Validators.required]],
       datedebut: ['', [Validators.required]],
-      datefin: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+      datefin: "",
+      etat: "en cours",
+      heuredepart: ['', [Validators.required]],
+      heureretour: ['', [Validators.required]],
 
     });
   }

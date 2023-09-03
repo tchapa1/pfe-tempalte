@@ -36,6 +36,7 @@ export class DgedittacheComponent implements OnInit {
       datecreation: ['', [Validators.required]],
       idprojet: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      idemploye: ['', [Validators.required]],
     });
   }
   // Choose options with select-dropdown
@@ -52,6 +53,7 @@ export class DgedittacheComponent implements OnInit {
         datecreation: data['datecreation'],
         idprojet: data['idprojet'],
         etat: data['etat'],
+        idemploye: data['idemploye'],
       });
     });
   }
@@ -62,6 +64,7 @@ export class DgedittacheComponent implements OnInit {
       datecreation: ['', [Validators.required]],
       idprojet: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      idemploye: ['', [Validators.required]],
     });
   }
   onSubmit() {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -316,6 +317,14 @@ import { RhmenuComponent } from './components/rhmenu/rhmenu.component';
 import { DgmenuComponent } from './components/dgmenu/dgmenu.component';
 import { ChefmenuComponent } from './components/chefmenu/chefmenu.component';
 import { IndexapplicationComponent } from './components/indexapplication/indexapplication.component';
+import { AdminacceuilComponent } from './components/adminacceuil/adminacceuil.component';
+import { DgacceuilComponent } from './components/dgacceuil/dgacceuil.component';
+import { CreateaffectationgroupeComponent } from './components/createaffectationgroupe/createaffectationgroupe.component';
+import { EditaffectationgroupeComponent } from './components/editaffectationgroupe/editaffectationgroupe.component';
+import { ListaffectationgroupeComponent } from './components/listaffectationgroupe/listaffectationgroupe.component';
+import { TestComponent } from './components/test/test.component';
+import { AdmincalandarComponent } from './components/admincalandar/admincalandar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -626,7 +635,14 @@ import { IndexapplicationComponent } from './components/indexapplication/indexap
     RhmenuComponent,
     DgmenuComponent,
     ChefmenuComponent,
-    IndexapplicationComponent
+    IndexapplicationComponent,
+    AdminacceuilComponent,
+    DgacceuilComponent,
+    CreateaffectationgroupeComponent,
+    EditaffectationgroupeComponent,
+    ListaffectationgroupeComponent,
+    TestComponent,
+    AdmincalandarComponent
   ],
   imports: [
     BrowserModule,
@@ -634,6 +650,8 @@ import { IndexapplicationComponent } from './components/indexapplication/indexap
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule,
+    FullCalendarModule // register FullCalendar with your app
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminapiavancementtacheService } from './../../service/adminapiavancementtache.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AdminapitacheService } from './../../service/adminapitache.service';
 
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-admindetailavancementtache',
@@ -14,37 +17,62 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./admindetailavancementtache.component.css']
 })
 export class AdmindetailavancementtacheComponent implements OnInit {
-
+  tache:any = [];
   submitted = false;
-  editForm: FormGroup;
+  detailForm: FormGroup;
   avancementtacheData: Avancementtache[];
   avancementtacheProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private apiService: AdminapiavancementtacheService,
-    private router: Router
+    private router: Router,
+    private apiService2222: AdminapitacheService
   ) {}
   ngOnInit() {
-    this.updateavancementtache();
+
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getavancementtache(id);
-    this.editForm = this.fb.group({
+    this.detailForm = this.fb.group({
       titre: ['', [Validators.required]],
       description: ['', [Validators.required]],
       idtache: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
     });
   }
+
+
+  readtache(){
+    this.apiService2222.getTaches().subscribe((data) => {
+     this.tache = data;
+    })    
+  }
+
+
+  public openPDF(): void {
+  let DATA: any = document.getElementById('htmlData');
+  html2canvas(DATA).then((canvas) => {
+    let fileWidth = 208;
+    let fileHeight = (canvas.height * fileWidth) / canvas.width;
+    const FILEURI = canvas.toDataURL('image/png');
+    let PDF = new jsPDF('p', 'mm', 'a4');
+    let position = 0;
+    PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+    PDF.save('angular-demo.pdf');
+  });
+}
+
+
+
   // Choose options with select-dropdown
 
   // Getter to access form control
   get myForm() {
-    return this.editForm.controls;
+    return this.detailForm.controls;
   }
   getavancementtache(id) {
     this.apiService.getAvancementtache(id).subscribe((data) => {
-      this.editForm.setValue({
+      this.detailForm.setValue({
         titre: data['titre'],
         description: data['description'],
         idtache: data['idtache'],
@@ -53,31 +81,6 @@ export class AdmindetailavancementtacheComponent implements OnInit {
       });
     });
   }
-  updateavancementtache() {
-    this.editForm = this.fb.group({
-      titre: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      idtache: ['', [Validators.required]],
-      datecreation: ['', [Validators.required]],
-    });
-  }
-  onSubmit() {
-    this.submitted = true;
-    if (!this.editForm.valid) {
-      return false;
-    } else {
-      if (window.confirm('Are you sure?')) {
-        let id = this.actRoute.snapshot.paramMap.get('id');
-        this.apiService.updateAvancementtache(id, this.editForm.value).subscribe({
-          complete: () => {
-            this.router.navigateByUrl('/adminlistavancementtache');
-            console.log('Content updated successfully!');
-          },
-          error: (e) => {
-            console.log(e);
-          },
-        });
-      }
-    }
-  }
+
+
 }

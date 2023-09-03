@@ -1,7 +1,3 @@
-
-
-
-
 <app-adminheader></app-adminheader>
 <app-adminmenu></app-adminmenu>
 
@@ -10,55 +6,51 @@
 
 
 
-<div class="row justify-content-center">
-    <div class="col-md-4 register-absence">
-      <!-- form card register -->
-      <div class="card card-outline-secondary">
-        <div class="card-header">
-          <h3 class="mb-0">Détails : </h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-lg-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <div class="header-title">
+            <h3 class="mb-0">Détails: </h3>
+          </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-
-          <div class="form-group">
-              <label for="inputName">idemploye</label>
-              <input class="form-control" type="text" formControlName="idemploye" readonly/>
-              <!-- error -->
+          <form [formGroup]="detailForm">
+            <!-- Première ligne -->
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="inputName">Id Employe:</label>
+                <input class="form-control" type="text" formControlName="idemploye" readonly />
+              </div>
+              <div class="col-md-6">
+                <label>Etat:</label>
+                <input class="form-control" type="text" formControlName="etat" readonly />               
+              </div>
             </div>
-          <div class="form-group">
-              <label for="inputName">description</label>
-              <input class="form-control" type="text" formControlName="description" readonly/>
-              <!-- error -->
+            <!-- Deuxième ligne -->
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="inputName">Date debut:</label>
+                <input class="form-control" type="date" formControlName="datedebut" readonly />
+              </div>
+              <div class="col-md-6">
+                <label for="inputName">Date fin:</label>
+                <input class="form-control" type="date" formControlName="datefin" readonly />
+              </div>
             </div>
-          <div class="form-group">
-              <label for="inputName">datedebut</label>
-              <input class="form-control" type="text" formControlName="datedebut" readonly/>
-              <!-- error -->
+            <!-- Troisième ligne -->
+            <div class="form-group">
+              <label for="inputName">Description:</label>
+              <input class="form-control" type="text" formControlName="description" readonly />
             </div>
-          <div class="form-group">
-              <label for="inputName">datefin</label>
-              <input class="form-control" type="text" formControlName="datefin" readonly/>
-              <!-- error -->
-            </div>
-          <div class="form-group">
-              <label for="inputName">etat</label>
-              <input class="form-control" type="text" formControlName="etat" readonly/>
-              <!-- error -->
-            </div>
-
-
-
           </form>
         </div>
       </div>
       <!-- form  -->
     </div>
   </div>
-
-
-
-
-
+</div>
 
 
 

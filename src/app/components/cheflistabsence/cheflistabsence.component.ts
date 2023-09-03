@@ -16,6 +16,15 @@ import html2canvas from 'html2canvas';
 })
 export class CheflistabsenceComponent implements OnInit {
   
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+
+  
   absence:any = [];
   user:any = [];
   conge:any = [];
@@ -35,6 +44,19 @@ export class CheflistabsenceComponent implements OnInit {
      this.absence = data;
     })    
   }
+  
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readabsence();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readabsence();
+  }
+
+
+
 
   removeabsence(absence, index) {
     if(window.confirm('Are you sure?')) {

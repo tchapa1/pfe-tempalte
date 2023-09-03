@@ -5,6 +5,7 @@ export class Tache {
     datecreation: string;
     idprojet: string;
     etat: string;
+    idemploye: string;
  }
  
  

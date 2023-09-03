@@ -1,8 +1,5 @@
 
 
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { AdminapiprojetService } from './../../service/adminapiprojet.service';
 
@@ -17,6 +14,15 @@ import html2canvas from 'html2canvas';
 })
 export class CheflistprojetComponent implements OnInit {
 
+
+  
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
   
   
   projet:any = [];
@@ -29,6 +35,20 @@ export class CheflistprojetComponent implements OnInit {
      this.projet = data;
     })    
   }
+  
+  
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readprojet();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readprojet();
+  }
+
+
   removeprojet(projet, index) {
     if(window.confirm('Are you sure?')) {
         this.apiService.deleteProjet(projet._id).subscribe((data) => {

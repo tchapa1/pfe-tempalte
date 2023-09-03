@@ -9,6 +9,7 @@ import html2canvas from 'html2canvas';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminapiuserService } from './../../service/adminapiuser.service';
 
 @Component({
   selector: 'app-coordinateurlistabsence',
@@ -17,16 +18,54 @@ import { Router } from '@angular/router';
 })
 export class CoordinateurlistabsenceComponent implements OnInit {
   
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+  
 
   findformForm: FormGroup;
+  absenceForm: FormGroup;
   submitted = false;
-
-
+  absencesss:any = [];
+  user:any = [];
+  absencefind:any = [];
   absence:any = [];
-  constructor(private apiService: AdminapiabsenceService,private router: Router, private ngZone: NgZone) { 
+  constructor(private apiService: AdminapiabsenceService,private router: Router, private ngZone: NgZone,private apiService1: AdminapiuserService,public fb: FormBuilder) { 
+    this.readabsence();
+    this.mainForm();
+  }
+  mainForm() {
+    this.findformForm = this.fb.group({
+      idemploye: ['', [Validators.required]],
+      datedebut: ['', [Validators.required]],
+      datefin: ['', [Validators.required]],
+
+    });
+  }
+
+  ngOnInit() {
+    this.apiService1.getUsers().subscribe((data) => {
+      this.user = data;
+     })
+
+  }
+  
+
+  onTableDataChange(event: any) {
+    this.page = event;
     this.readabsence();
   }
-  ngOnInit() {}
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readabsence();
+  }
+
+
   readabsence(){
     this.apiService.getAbsences().subscribe((data) => {
      this.absence = data;
@@ -55,20 +94,13 @@ export class CoordinateurlistabsenceComponent implements OnInit {
 }
 
 onSubmitss() {
-  this.submitted = true;
-  if (!this.findformForm.valid) {
-    return false;
-  } else {
-    return this.apiService.createAbsence(this.findformForm.value).subscribe({
-      complete: () => {
-        console.log('absence successfully created!'),
-          this.ngZone.run(() => this.router.navigateByUrl('/adminlistabsence'));
-      },
-      error: (e) => {
-        console.log(e);
-      },
-    });
+  let creatorId = []
+  for (let i in this.absence) {
+    if(this.findformForm.value.idemploye==this.absence[i].idemploye)
+         this.absencefind.push(this.user[i])
+
   }
+  this.absence =this.absencefind;
 }
 
 

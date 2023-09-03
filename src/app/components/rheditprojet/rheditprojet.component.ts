@@ -35,6 +35,8 @@ export class RheditprojetComponent implements OnInit {
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      idemploye: ['', [Validators.required]],
+      nbheures: ['', [Validators.required]],
     });
   }
   // Choose options with select-dropdown
@@ -50,6 +52,8 @@ export class RheditprojetComponent implements OnInit {
         description: data['description'],
         datecreation: data['datecreation'],
         etat: data['etat'],
+        idemploye: data['idemploye'],
+        nbheures: data['nbheures'],
       });
     });
   }
@@ -59,6 +63,8 @@ export class RheditprojetComponent implements OnInit {
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      idemploye: ['', [Validators.required]],
+      nbheures: ['', [Validators.required]],
     });
   }
   onSubmit() {

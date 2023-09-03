@@ -1,8 +1,9 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const notificationRoute = express.Router();
 // notification model
-let notification = require('../models/notification');
 // Add notification
 notificationRoute.route('/create').post((req, res, next) => {
   notification.create(req.body, (error, data) => {

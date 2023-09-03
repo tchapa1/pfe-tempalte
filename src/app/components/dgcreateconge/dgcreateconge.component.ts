@@ -34,6 +34,7 @@ export class DgcreatecongeComponent implements OnInit {
       datedebut: ['', [Validators.required]],
       datefin: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      soldeconge: ['', [Validators.required]],
 
     });
   }

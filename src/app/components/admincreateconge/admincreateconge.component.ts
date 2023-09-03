@@ -19,7 +19,7 @@ export class AdmincreatecongeComponent implements OnInit {
   user:any = [];
   submitted = false;
   congeForm: FormGroup;
-  congeProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
+
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -50,7 +50,7 @@ readuser(){
       description: ['', [Validators.required]],
       datedebut: ['', [Validators.required]],
       datefin: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+      etat: "en cours",
 
     });
   }

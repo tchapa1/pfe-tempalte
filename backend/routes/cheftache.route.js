@@ -1,4 +1,6 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const tacheRoute = express.Router();
 // tache model
@@ -12,6 +14,17 @@ tacheRoute.route('/create').post((req, res, next) => {
       res.json(data)
     }
   })
+
+  const post = new notification({
+    titre: "operation de creation de Tache",
+    description: "creation Tache par CHEF",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
 });
 // Get All taches
 tacheRoute.route('/').get((req, res) => {
@@ -47,6 +60,16 @@ tacheRoute.route('/update/:id').put((req, res, next) => {
       console.log('Data updated successfully')
     }
   })
+
+  const post = new notification({
+    titre: "operation de mise a jour de Tache",
+    description: "Mise a jour Tache par CHEF",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
 })
 // Delete tache
 tacheRoute.route('/delete/:id').delete((req, res, next) => {
@@ -59,5 +82,17 @@ tacheRoute.route('/delete/:id').delete((req, res, next) => {
       })
     }
   })
+
+  const post = new notification({
+    titre: "operation de suppression de Tache",
+    description: "suppression Tache par CHEF",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
+
 })
 module.exports = tacheRoute;

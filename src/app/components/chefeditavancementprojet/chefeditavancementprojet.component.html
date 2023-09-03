@@ -7,6 +7,11 @@
 
 
 
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+  
+  
 
 
 <div class="row justify-content-center">
@@ -23,21 +28,49 @@
               <label for="inputName">titre</label>
               <input class="form-control" type="text" formControlName="titre" />
               <!-- error -->
+              <div
+                    class="invalid-feedback"
+                    *ngIf="submitted && myForm['titre'].errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                  titre est obligatoire.....
+                  </div>
             </div>
           <div class="form-group">
               <label for="inputName">description</label>
               <input class="form-control" type="text" formControlName="description" />
               <!-- error -->
+              <div
+                    class="invalid-feedback"
+                    *ngIf="submitted && myForm['description'].errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                  description est obligatoire.....
+                  </div>
             </div>
           <div class="form-group">
               <label for="inputName">idprojet</label>
               <input class="form-control" type="text" formControlName="idprojet" />
               <!-- error -->
+              <div
+                    class="invalid-feedback"
+                    *ngIf="submitted && myForm['idprojet'].errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                  idprojet est obligatoire.....
+                  </div>
             </div>
           <div class="form-group">
               <label for="inputName">datecreation</label>
               <input class="form-control" type="date" formControlName="datecreation" />
               <!-- error -->
+              <div
+                    class="invalid-feedback"
+                    *ngIf="submitted && myForm['datecreation'].errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                  datecreation est obligatoire.....
+                  </div>
             </div>
 
 
@@ -59,13 +92,9 @@
 
 
 
-
-
-
-
-
-
-
+</div>
+</div>
+</div>
 
 
 

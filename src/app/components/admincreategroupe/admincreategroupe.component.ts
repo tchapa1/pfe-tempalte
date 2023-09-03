@@ -18,7 +18,9 @@ export class AdmincreategroupeComponent implements OnInit {
   
   submitted = false;
   groupeForm: FormGroup;
-  groupeProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
+  public d: Date = new Date(); 
+
+
   constructor(
     public fb: FormBuilder,
     private router: Router,

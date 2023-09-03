@@ -1,15 +1,9 @@
-
-
-
-
-
-
-
 import { Projet } from './../../model/projet';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminapiprojetService } from './../../service/adminapiprojet.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AdminapigroupeService } from 'src/app/service/adminapigroupe.service';
 
 
 @Component({
@@ -20,61 +14,101 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AdmineditprojetComponent implements OnInit {
 
   submitted = false;
-  editForm: FormGroup;
+  projetForm: FormGroup;
   projetData: Projet[];
-  projetProfile: any = ['Finance', 'BDM', 'HR', 'Sales', 'Admin'];
+  groupe: any = [];
+
+
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
+    private router: Router,
     private apiService: AdminapiprojetService,
-    private router: Router
-  ) {}
+    private apiService1: AdminapigroupeService
+  ) {
+    this.mainForm();
+    this.readgroupe();
+  }
+
+  
+  readgroupe() {
+    this.apiService1.getGroupes().subscribe((data) => {
+      this.groupe = data;
+    })
+  }
+
+
   ngOnInit() {
     this.updateprojet();
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getprojet(id);
-    this.editForm = this.fb.group({
+    this.projetForm = this.fb.group({
       nom: ['', [Validators.required]],
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
       datefin: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      idgroupe: ['', [Validators.required]],
+      nbheures: ['', [Validators.required]],
     });
   }
   // Choose options with select-dropdown
 
   // Getter to access form control
   get myForm() {
-    return this.editForm.controls;
+    return this.projetForm.controls;
   }
+
+  mainForm() {
+    this.projetForm = this.fb.group({
+      nom: [''],
+      description: [''],
+      datecreation: [''],
+      datefin: [''],
+      etat: [''],
+      idgroupe: [''],
+      nbheures: [''],
+
+    });
+  }
+
+
   getprojet(id) {
     this.apiService.getProjet(id).subscribe((data) => {
-      this.editForm.setValue({
+      this.projetForm.setValue({
         nom: data['nom'],
         description: data['description'],
         datecreation: data['datecreation'],
         datefin: data['datecreation'],
         etat: data['etat'],
+        idgroupe: data['idgroupe'],
+        nbheures: data['nbheures'],
       });
     });
   }
+
+
   updateprojet() {
-    this.editForm = this.fb.group({
-      nom: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      datecreation: ['', [Validators.required]],
-      datefin: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+    this.projetForm = this.fb.group({
+      nom: [''],
+      description: [''],
+      datecreation: [''],
+      datefin: [''],
+      etat: [''],
+      idgroupe: [''],
+      nbheures: [''],
     });
   }
+
+  
   onSubmit() {
     this.submitted = true;
-    if (!this.editForm.valid) {
+    if (!this.projetForm.valid) {
       return false;
     } else {
       if (window.confirm('Are you sure?')) {
         let id = this.actRoute.snapshot.paramMap.get('id');
-        this.apiService.updateProjet(id, this.editForm.value).subscribe({
+        this.apiService.updateProjet(id, this.projetForm.value).subscribe({
           complete: () => {
             this.router.navigateByUrl('/adminlistprojet');
             console.log('Content updated successfully!');

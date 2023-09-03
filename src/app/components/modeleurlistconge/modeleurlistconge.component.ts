@@ -15,6 +15,15 @@ import html2canvas from 'html2canvas';
 })
 export class ModeleurlistcongeComponent implements OnInit {
   
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+
+  
   conge:any = [];
   constructor(private apiService: AdminapicongeService) { 
     this.readconge();
@@ -25,6 +34,21 @@ export class ModeleurlistcongeComponent implements OnInit {
      this.conge = data;
     })    
   }
+
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readconge();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readconge();
+  }
+
+
+
+
   removeconge(conge, index) {
     if(window.confirm('Are you sure?')) {
         this.apiService.deleteConge(conge._id).subscribe((data) => {

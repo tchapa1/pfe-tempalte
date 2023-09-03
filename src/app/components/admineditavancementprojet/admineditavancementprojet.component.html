@@ -1,63 +1,72 @@
-
-
-
-
 <app-adminheader></app-adminheader>
 <app-adminmenu></app-adminmenu>
 
 
 
 
-<div class="row justify-content-center">
-    <div class="col-md-4 register-employee">
-      <!-- form card register -->
-      <div class="card card-outline-secondary">
-        <div class="card-header">
-          <h3 class="mb-0">Modifier les données : </h3>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-lg-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <div class="header-title">
+            <h3 class="mb-0">Modifier les données : </h3>
+          </div>
         </div>
         <div class="card-body">
           <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-
-          <div class="form-group">
-              <label for="inputName">titre</label>
-              <input class="form-control" type="text" formControlName="titre" />
-              <!-- error -->
+            <!-- Première ligne -->
+            <div class="form-group row">
+              <div class="col-md-4">
+                <label for="inputName">Titre:</label>
+                <input class="form-control" type="text" formControlName="titre" />
+                <!-- error -->
+                <div class="invalid-feedback" *ngIf="submitted && myForm['titre'].errors?.['required']">
+                  titre est obligatoire...
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="inputName">Id projet:</label>
+                <input class="form-control" type="text" formControlName="idprojet" />
+                <!-- error -->
+                <div class="invalid-feedback" *ngIf="submitted && myForm['idprojet'].errors?.['required']">
+                  idprojet est obligatoire...
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="inputName">Date creation:</label>
+                <input class="form-control" type="date" formControlName="datecreation" />
+                <!-- error -->
+                <div class="invalid-feedback" *ngIf="submitted && myForm['datecreation'].errors?.['required']">
+                  date creation est obligatoire...
+                </div>
+              </div>
             </div>
-          <div class="form-group">
-              <label for="inputName">description</label>
+
+            <!-- Deuxième ligne -->
+            <div class="form-group">
+              <label for="inputName">Description:</label>
               <input class="form-control" type="text" formControlName="description" />
               <!-- error -->
-            </div>
-          <div class="form-group">
-              <label for="inputName">idprojet</label>
-              <input class="form-control" type="text" formControlName="idprojet" />
-              <!-- error -->
-            </div>
-          <div class="form-group">
-              <label for="inputName">datecreation</label>
-              <input class="form-control" type="date" formControlName="datecreation" />
-              <!-- error -->
+              <div class="invalid-feedback" *ngIf="submitted && myForm['description'].errors?.['required']">
+                description est obligatoire...
+              </div>
             </div>
 
-
-
-
-                      <div class="form-group">
-
-              <button class="btn btn-success btn-lg btn-block" type="submit">
+            <!-- Bouton en milieu -->
+            <div class="form-group text-center">
+              <button class="btn btn-success btn-lg" type="submit">
                 Update
               </button>
             </div>
           </form>
         </div>
+        <!-- form  -->
       </div>
-      <!-- form  -->
     </div>
   </div>
-
-
-
-
+</div>
 
 
 

@@ -95,7 +95,7 @@ signIn(email: string, password: string) {
         this.saveAuthData(token, expirationDate, this.userId);
         if(this.roleid===pass1)
         {
-        this.router.navigate(["/adminlistabsence"]);
+        this.router.navigate(["/adminacceuil"]);
         }
         if(this.roleid===pass2)
         {
@@ -107,7 +107,7 @@ signIn(email: string, password: string) {
         }
         if(this.roleid===pass4)
         {
-        this.router.navigate(["/dglistabsence"]);
+        this.router.navigate(["/dgacceuil"]);
         }
         if(this.roleid===pass5)
         {

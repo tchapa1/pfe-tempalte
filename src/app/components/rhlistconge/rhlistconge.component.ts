@@ -22,6 +22,16 @@ import { AdminapiuserService } from './../../service/adminapiuser.service';
 export class RhlistcongeComponent implements OnInit {
   
 
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+
+  
+
   findformForm: FormGroup;
   submitted = false;
 
@@ -29,6 +39,11 @@ export class RhlistcongeComponent implements OnInit {
   absenceForm: FormGroup;
 
   conge:any = [];
+
+  congefind:any = [];
+
+
+
   constructor(private apiService: AdminapicongeService,    private router: Router,
     private ngZone: NgZone,private apiService1: AdminapiuserService,
     public fb: FormBuilder
@@ -51,6 +66,19 @@ export class RhlistcongeComponent implements OnInit {
      })
 
   }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readconge();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readconge();
+  }
+
+
+
 
   readconge(){
     this.apiService.getConges().subscribe((data) => {
@@ -86,14 +114,21 @@ export class RhlistcongeComponent implements OnInit {
   }
 
 
-  onSubmitssss() {
 
 
-    this.apiService.findconge(this.absenceForm.value).subscribe((data) => {
-      this.conge = data;
+onSubmitssss() {
 
-    })  
+
+  let creatorId = []
+  for (let i in this.conge) {
+    if(this.absenceForm.value.idemploye==this.conge[i].idemploye)
+         this.congefind.push(this.conge[i])
+
+  }
+  this.conge =this.congefind;
 }
+
+
 
 
 

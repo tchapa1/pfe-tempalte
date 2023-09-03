@@ -33,6 +33,10 @@ export class RhedituserComponent implements OnInit {
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getuser(id);
     this.editForm = this.fb.group({
+      nom: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
+      departement: ['', [Validators.required]],
+      matricule: ['', [Validators.required]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
       role: ['', [Validators.required]],
@@ -47,15 +51,24 @@ export class RhedituserComponent implements OnInit {
   getuser(id) {
     this.apiService.getUser(id).subscribe((data) => {
       this.editForm.setValue({
+        nom: data['nom'],
+        prenom: data['prenom'],
+        departement: data['departement'],
+        matricule: data['matricule'],
         email: data['email'],
         password: data['password'],
         role: data['role'],
+
 
       });
     });
   }
   updateuser() {
     this.editForm = this.fb.group({
+      nom: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
+      departement: ['', [Validators.required]],
+      matricule: ['', [Validators.required]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
       role: ['', [Validators.required]],

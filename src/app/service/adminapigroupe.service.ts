@@ -30,7 +30,7 @@ export class AdminapigroupeService {
   getGroupes() {
     return this.http.get(`${this.baseUri}`);
   }
-  // Get Groupe
+  // Get Groupe by Id
   getGroupe(id): Observable<any> {
     let url = `${this.baseUri}/read/${id}`;
     return this.http.get(url, { headers: this.headers }).pipe(

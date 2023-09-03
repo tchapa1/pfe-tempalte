@@ -16,6 +16,15 @@ import html2canvas from 'html2canvas';
 })
 export class ModeleurlistabsenceComponent implements OnInit {
   
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+
+  
   absence:any = [];
   constructor(private apiService: AdminapiabsenceService) { 
     this.readabsence();
@@ -26,6 +35,19 @@ export class ModeleurlistabsenceComponent implements OnInit {
      this.absence = data;
     })    
   }
+  
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readabsence();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readabsence();
+  }
+
+
   removeabsence(absence, index) {
     if(window.confirm('Are you sure?')) {
         this.apiService.deleteAbsence(absence._id).subscribe((data) => {

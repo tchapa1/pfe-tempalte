@@ -1,78 +1,91 @@
-
-
-
-
 <app-adminheader></app-adminheader>
 <app-adminmenu></app-adminmenu>
 
 
-
-<div class="row justify-content-center">
-    <div class="col-md-4 register-employee">
-      <!-- form card register -->
-      <div class="card card-outline-secondary">
-        <div class="card-header">
-          <h3 class="mb-0">Edit Data :</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-lg-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <div class="header-title">
+            <h3 class="mb-0">Modifier les données : </h3>
+          </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-
-          <div class="form-group col-md-6">
-              <label for="inputName">titre</label>
-              <input class="form-control" type="text" formControlName="titre" />
-              <!-- error -->
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="form-inline">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <label for="inputName">Objet:</label>
+                <input class="form-control" type="text" formControlName="titre" />
+                <!-- error -->
+                <div class="invalid-feedback" *ngIf="submitted && myForm['titre'].errors?.['required']">
+                  titre est obligatoire.....
+                </div>
+              </div>
+              <div class="col-md-6 form-group">
+                <label for="inputName">Date creation:</label>
+                <input class="form-control" type="date" formControlName="datecreation" />
+                <!-- error -->
+                <div class="invalid-feedback" *ngIf="submitted && myForm['datecreation'].errors?.['required']">
+                  datecreation est obligatoire.....
+                </div>
+              </div>
             </div>
-          <div class="form-group col-md-6">
-              <label for="inputName">description</label>
+
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <label for="inputName">Id Envoie:</label>
+                <input class="form-control" type="text" formControlName="idenvoie" />
+                <!-- error -->
+                <div class="invalid-feedback" *ngIf="submitted && myForm['idenvoie'].errors?.['required']">
+                  idenvoie est obligatoire.....
+                </div>
+              </div>
+              <div class="col-md-6 form-group">
+                <label for="inputName">Id Réception:</label>
+                <input class="form-control" type="text" formControlName="idreception" />
+                <!-- error -->
+                <div class="invalid-feedback" *ngIf="submitted && myForm['idreception'].errors?.['required']">
+                  idreception est obligatoire.....
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputName">Déscription:</label>
               <input class="form-control" type="text" formControlName="description" />
               <!-- error -->
+              <div class="invalid-feedback" *ngIf="submitted && myForm['description'].errors?.['required']">
+                description est obligatoire.....
+              </div>
             </div>
-          <div class="form-group col-md-6">
-              <label for="inputName">idenvoie</label>
-              <input class="form-control" type="text" formControlName="idenvoie" />
+
+            <div class="form-group">
+              <label>Etat:</label>
+              <select class="form-select" name="etat" formControlName="etat">
+                <option>Selectionner etat</option>
+                <option>En cours</option>
+                <option>Cloturé</option>
+              </select>
               <!-- error -->
-            </div>
-          <div class="form-group col-md-6">
-              <label for="inputName">idreception</label>
-              <input class="form-control" type="text" formControlName="idreception" />
-              <!-- error -->
-            </div>
-          <div class="form-group col-md-6">
-              <label for="inputName">datecreation</label>
-              <input class="form-control" type="date" formControlName="datecreation" />
-              <!-- error -->
-            </div>
-          <div class="form-group col-md-6">
-              <label for="inputName">etat</label>
-              <input class="form-control" type="text" formControlName="etat" />
-              <!-- error -->
+              <div class="invalid-feedback" *ngIf="submitted && myForm['etat'].errors?.['required']">
+                etat est obligatoire.....
+              </div>
             </div>
 
-
-
-
-                      <div class="form-group col-md-6">
-
-              <button class="btn btn-success btn-lg btn-block" type="submit">
+            <div class="form-group text-center mt-3">
+              <button class="btn btn-success btn-lg" type="submit">
                 Update
               </button>
             </div>
+
           </form>
         </div>
       </div>
       <!-- form  -->
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 

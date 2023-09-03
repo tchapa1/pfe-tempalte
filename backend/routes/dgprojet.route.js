@@ -1,4 +1,6 @@
 const express = require('express');
+let notification = require('../models/notification');
+const createError = require('http-errors');
 const app = express();
 const projetRoute = express.Router();
 // projet model
@@ -12,6 +14,17 @@ projetRoute.route('/create').post((req, res, next) => {
       res.json(data)
     }
   })
+
+  const post = new notification({
+    titre: "operation de creation de projet",
+    description: "creation projet par DG",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
+
 });
 // Get All projets
 projetRoute.route('/').get((req, res) => {
@@ -47,6 +60,16 @@ projetRoute.route('/update/:id').put((req, res, next) => {
       console.log('Data updated successfully')
     }
   })
+
+  const post = new notification({
+    titre: "operation de mise a jour de projet",
+    description: "mise a jour projet par DG",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
+
+
 })
 // Delete projet
 projetRoute.route('/delete/:id').delete((req, res, next) => {
@@ -59,5 +82,12 @@ projetRoute.route('/delete/:id').delete((req, res, next) => {
       })
     }
   })
+  const post = new notification({
+    titre: "operation de suppression de projet",
+    description: "suppression projet par DG",
+    datecreation: new Date(),
+    etat: "en cours",
+  })
+  post.save();
 })
 module.exports = projetRoute;

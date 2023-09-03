@@ -34,6 +34,7 @@ export class RhcreatetacheComponent implements OnInit {
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      idemploye: ['', [Validators.required]],
 
     });
   }

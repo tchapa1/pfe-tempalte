@@ -14,6 +14,15 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./dglisttache.component.css']
 })
 export class DglisttacheComponent implements OnInit {
+  
+  POSTS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
+
+
 
   
   tache:any = [];
@@ -26,6 +35,18 @@ export class DglisttacheComponent implements OnInit {
      this.tache = data;
     })    
   }
+  
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.readtache();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.readtache();
+  }
+
+
   removetache(tache, index) {
     if(window.confirm('Are you sure?')) {
         this.apiService.deleteTache(tache._id).subscribe((data) => {

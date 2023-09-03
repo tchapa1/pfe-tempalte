@@ -311,12 +311,30 @@ import { DgmenuComponent } from './components/dgmenu/dgmenu.component';
 import { ChefmenuComponent } from './components/chefmenu/chefmenu.component';
 import { IndexapplicationComponent } from './components/indexapplication/indexapplication.component';
 
+import { AdminacceuilComponent } from './components/adminacceuil/adminacceuil.component';
+import { DgacceuilComponent } from './components/dgacceuil/dgacceuil.component';
+
+import { CreateaffectationgroupeComponent } from './components/createaffectationgroupe/createaffectationgroupe.component';
+import { EditaffectationgroupeComponent } from './components/editaffectationgroupe/editaffectationgroupe.component';
+import { ListaffectationgroupeComponent } from './components/listaffectationgroupe/listaffectationgroupe.component';
+
+import { TestComponent } from './components/test/test.component';
+import { AdmincalandarComponent } from './components/admincalandar/admincalandar.component';
+
 
 
 const routes: Routes = [
+  { path: '', component: TestComponent },
 
-  { path: '', component: IndexapplicationComponent },
+ // { path: '', component: IndexapplicationComponent },
+  { path: 'adminacceuil', component:  AdminacceuilComponent }, 
 
+  { path: 'dgacceuil', component:  DgacceuilComponent }, 
+
+
+  { path: 'createaffectationgroupe', component:  CreateaffectationgroupeComponent }, 
+  { path: 'editaffectationgroupe/:id', component:  EditaffectationgroupeComponent }, 
+  { path: 'listaffectationgroupe', component:  ListaffectationgroupeComponent }, 
 
 { path: 'admincreeruser', component:  AdmincreateuserComponent }, 
 { path: 'adminedituser/:id', component:  AdminedituserComponent }, 
@@ -349,7 +367,7 @@ const routes: Routes = [
 { path: 'admincreernotif', component:  AdmincreatenotificationComponent }, 
 { path: 'admineditnotif/:id', component:  AdmineditnotificationComponent }, 
 { path: 'admindetailnotif/:id', component:  AdmindetailnotificationComponent }, 
-{ path: 'adminlistnotif', component:  AdminlistnotificationComponent }, 
+{ path: 'adminlistnotification', component:  AdminlistnotificationComponent }, 
 { path: 'admincreeravancementprojet', component:  AdmincreateavancementprojetComponent }, 
 { path: 'admineditavancementprojet/:id', component:  AdmineditavancementprojetComponent }, 
 { path: 'admindetailavancementprojet/:id', component:  AdmindetailavancementprojetComponent }, 
@@ -658,7 +676,8 @@ const routes: Routes = [
 { path: 'rhmenu', component:  RhmenuComponent }, 
 { path: 'dgmenu', component:  DgmenuComponent }, 
 { path: 'chefmenu', component:  ChefmenuComponent }, 
-{ path: 'index', component:  IndexapplicationComponent }
+{ path: 'index', component:  IndexapplicationComponent },
+{ path: 'admincalandar', component:  AdmincalandarComponent },
 
 
 

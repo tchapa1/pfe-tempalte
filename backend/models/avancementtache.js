@@ -15,6 +15,9 @@ let avancementtache = new Schema({
    idtache: {
       type: String
    },
+   idprojet: {
+      type: String
+   },
    datecreation: {
       type: String
    }

@@ -34,6 +34,7 @@ export class ModeleureditcongeComponent implements OnInit {
       datedebut: ['', [Validators.required]],
       datefin: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      soldeconge: ['', [Validators.required]],
     });
   }
   // Choose options with select-dropdown
@@ -50,6 +51,7 @@ export class ModeleureditcongeComponent implements OnInit {
         datedebut: data['datedebut'],
         datefin: data['datefin'],
         etat: data['etat'],
+        soldeconge: data['soldeconge'],
       });
     });
   }
@@ -60,6 +62,7 @@ export class ModeleureditcongeComponent implements OnInit {
       datedebut: ['', [Validators.required]],
       datefin: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      soldeconge: ['', [Validators.required]],
     });
   }
   onSubmit() {

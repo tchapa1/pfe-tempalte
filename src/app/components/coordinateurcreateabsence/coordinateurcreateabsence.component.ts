@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AdminapiabsenceService } from './../../service/adminapiabsence.service';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AdminapiuserService } from './../../service/adminapiuser.service';
 
 @Component({
   selector: 'app-coordinateurcreateabsence',
@@ -12,7 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./coordinateurcreateabsence.component.css']
 })
 export class CoordinateurcreateabsenceComponent implements OnInit {
-
+  user:any = [];
   
   submitted = false;
   absenceForm: FormGroup;
@@ -21,18 +22,25 @@ export class CoordinateurcreateabsenceComponent implements OnInit {
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private apiService: AdminapiabsenceService
+    private apiService: AdminapiabsenceService,
+    private apiService1: AdminapiuserService
   ) {
     this.mainForm();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.apiService1.getUsers().subscribe((data) => {
+      this.user = data;
+     })
+  }
   mainForm() {
     this.absenceForm = this.fb.group({
       idemploye: ['', [Validators.required]],
       description: ['', [Validators.required]],
       datedebut: ['', [Validators.required]],
-      datefin: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+      datefin: "",
+      etat: "en cours",
+      heuredepart: ['', [Validators.required]],
+      heureretour: ['', [Validators.required]],
 
     });
   }

@@ -46,7 +46,9 @@ export class ChefcreatecongeComponent implements OnInit {
       description: ['', [Validators.required]],
       datedebut: ['', [Validators.required]],
       datefin: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+      etat: ['', [Validators.required]],        
+      soldeconge: ['', [Validators.required]], 
+
 
     });
   }

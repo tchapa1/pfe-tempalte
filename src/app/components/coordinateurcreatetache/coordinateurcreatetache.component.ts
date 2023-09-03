@@ -33,6 +33,7 @@ export class CoordinateurcreatetacheComponent implements OnInit {
       datecreation: ['', [Validators.required]],
       idprojet: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      idemploye: ['', [Validators.required]],
 
     });
   }

@@ -1,68 +1,49 @@
-
-
-
-
 <app-adminheader></app-adminheader>
 <app-adminmenu></app-adminmenu>
 
 
-
-
-<div class="row justify-content-center">
-    <div class="col-md-4 register-employee">
-      <!-- form card register -->
-      <div class="card card-outline-secondary">
-        <div class="card-header">
-          <h3 class="mb-0">Modifier les données : </h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-lg-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <div class="header-title">
+            <h3 class="mb-0">Modifier les données : </h3>
+          </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-
-            
-          <div class="form-group">
-              <label for="inputName">idemploye</label>
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="row">
+            <!-- Première ligne -->
+            <div class="form-group col-md-4">
+              <label for="inputName">Id employe:</label>
               <input class="form-control" type="text" formControlName="idemploye" />
-              <!-- error -->
             </div>
-          <div class="form-group">
-              <label for="inputName">description</label>
-              <input class="form-control" type="text" formControlName="description" />
-              <!-- error -->
-            </div>
-          <div class="form-group">
-              <label for="inputName">datedebut</label>
-              <input class="form-control" type="text" formControlName="datedebut" />
-              <!-- error -->
-            </div>
-          <div class="form-group">
-              <label for="inputName">datefin</label>
-              <input class="form-control" type="text" formControlName="datefin" />
-              <!-- error -->
-            </div>
-            <div class="form-group">
-              <label>etat</label>
-  
-              <select class="form-select"  name="etat"  formControlName="etat">
-  
-                <option>Selectionner etat </option>
-  
-                <option>en cours</option>
-                <option>valide</option>
-                <option>non valide</option>
-                <option>en atente</option>
-    
-    
-    
+            <div class="form-group col-md-4">
+              <label>Etat:</label>
+              <select class="form-select" name="etat" formControlName="etat">
+                <option>Validé</option>
+                <option>Non validé</option>
+                <option>En attente</option>
               </select>
-  
-  
             </div>
-
-
-
-                      <div class="form-group">
-
-              <button class="btn btn-success btn-lg btn-block" type="submit">
+            <div class="form-group col-md-4">
+              <label for="inputName">Solde congé:</label>
+              <input class="form-control" type="text" formControlName="soldeconge" readonly />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputName">Date debut:</label>
+              <input class="form-control" type="date" formControlName="datedebut" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputName">Date fin:</label>
+              <input class="form-control" type="date" formControlName="datefin" />
+            </div>
+            <div class="form-group col-md-12">
+              <label for="inputName">Description:</label>
+              <input class="form-control" type="text" formControlName="description" />
+            </div>
+            <div class="form-group text-center col-12">
+              <button class="btn btn-success btn-lg" type="submit">
                 Update
               </button>
             </div>
@@ -72,14 +53,7 @@
       <!-- form  -->
     </div>
   </div>
-
-
-
-
-
-
-
-
+</div>
 
 
 

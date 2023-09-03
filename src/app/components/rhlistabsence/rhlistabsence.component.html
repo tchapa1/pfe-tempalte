@@ -1,64 +1,160 @@
-
-
-
-
 <app-rhheader></app-rhheader>
 <app-rhmenu></app-rhmenu>
 
 
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+      <br>
+      <hr>
+
+
+      <div class="container">
+
+
+        <form [formGroup]="absenceForm" (ngSubmit)="onSubmitssss()">
+
+
+
+          <div class="form-row">
+            <div class="col">
+              <label for="inputName">idemploye</label>
+              <select class="form-select" name="idemploye" formControlName="idemploye">
+                <option>Selectionner idemploye </option>
+                <option *ngFor="let employe of user; let i = index" value="{{employe._id}}">{{employe.email}}</option>
+              </select>
+              <!-- error -->
+            </div>
+
+          </div>
+
+
+
+          <div class="form-row">
+            <div class="col">
+              <label for="inputName">datedebut</label>
+              <input class="form-control" type="date" formControlName="datedebut" />
+
+            </div>
+
+
+            <div class="col">
+              <label for="inputName">datefin</label>
+              <input class="form-control" type="date" formControlName="datefin" />
+
+            </div>
+
+
+
+          </div>
+
+
+          <br><br>
+          <div class="form-group">
+
+            <button class="btn btn-dark btn-lg btn-block" type="submit">
+              Filter
+            </button>
+          </div>
+        </form>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
 
 <div class="container">
-    <button class="btn btn-lg btn-success" routerLink="/rhcreerabsence/">create new</button>&nbsp;
-    <button class="btn btn-lg btn-info" (click)="openPDF()">Download PDF</button>&nbsp;
-  
-  </div>
-  <br><hr>
-  
-  <div class="container">
-      <!-- No data message -->
-      <p *ngIf="absence.length <= 0" class="no-data text-center">There is no absence added yet!</p>
-      <!-- absence list -->
-      <table class="table table-bordered" *ngIf="absence.length > 0">
-        <thead class="table-success">
-          <tr>
-            <th scope="col">description</th>
-            <th scope="col">datedebut</th>
-            <th scope="col">datefin</th>
-            <th scope="col">etat</th>
-            <th scope="col center">Update</th>
-  <th scope="col center">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let absence of absence; let i = index">
-            <td>{{absence.description}}</td>
-            <td>{{absence.datedebut}}</td>
-            <td>{{absence.datefin}}</td>
-            <td>{{absence.etat}}</td>
-            <td class="text-center edit-block">
-              <span class="edit" [routerLink]="['/rheditabsence/', absence._id]">
-                <button type="button" class="btn btn-warning btn-lg">Gérer</button>&nbsp;&nbsp;
-              </span>
-  </td>
-  <td>
-              <span class="delete" (click)="removeabsence(absence, i)">
-                <button type="button" class="btn btn-danger btn-lg">Supprimer</button>&nbsp;&nbsp;
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+      <br>
+      <hr>
+
+
+      <div class="container">
+        <button class="btn btn-lg btn-success" routerLink="/rhcreerabsence/">create new</button>&nbsp;
+        <button class="btn btn-lg btn-info" (click)="openPDF()">Download PDF</button>&nbsp;
+
+      </div>
+
+
+      <br>
+      <hr>
     </div>
-  
-  
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+      <br>
+      <hr>
+
+      <div class="container">
+        <!-- No data message -->
+        <p *ngIf="absence.length <= 0" class="no-data text-center">There is no absence added yet!</p>
+        <!-- absence list -->
+        <table class="table table-bordered" id="htmlData" *ngIf="absence.length > 0">
+          <thead class="table-success">
+            <tr>
+              <th scope="col">description</th>
+              <th scope="col">datedebut</th>
+              <th scope="col">datefin</th>
+              <th scope="col">etat</th>
+              <th scope="col center">Update</th>
+              <th scope="col center">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="
+            let absence of absence
+              | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index
+          ">
+
+
+              <td>{{absence.description}}</td>
+              <td>{{absence.datedebut}}</td>
+              <td>{{absence.datefin}}</td>
+              <td>{{absence.etat}}</td>
+              <td class="text-center edit-block">
+                <span class="edit" [routerLink]="['/rheditabsence/', absence._id]">
+                  <button type="button" class="btn btn-warning btn-lg">Gérer</button>&nbsp;&nbsp;
+                </span>
+              </td>
+              <td>
+                <span class="delete" (click)="removeabsence(absence, i)">
+                  <button type="button" class="btn btn-danger btn-lg">Supprimer</button>&nbsp;&nbsp;
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        <div class="d-flex justify-content-center">
+          <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+          </pagination-controls>
+        </div>
+
+
+      </div>
 
 
 
-
-
-
-
-
+    </div>
+  </div>
+</div>
 
 
 

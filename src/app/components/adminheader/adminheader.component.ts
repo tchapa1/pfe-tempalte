@@ -1,14 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-
-
-
-import { AdminapiabsenceService } from './../../service/adminapiabsence.service';
 import { AdminapiuserService } from './../../service/adminapiuser.service';
-import { AdminapicongeService } from './../../service/adminapiconge.service';
-import { AdminapiprojetService } from './../../service/adminapiprojet.service';
-import { AdminapinotificationService } from './../../service/adminapinotification.service';
-
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -28,24 +20,18 @@ export class AdminheaderComponent implements OnInit {
   profileisSet = false
 
 
-  notif:any = [];
-  absence:any = [];
   user:any = [];
-  conge:any = [];
-  projet:any = [];
+
 
   constructor(
-    private apiServiceabsence: AdminapiabsenceService,
+   
     private apiServiceuser: AdminapiuserService,
-    private apiServiceconge: AdminapicongeService,
-    private apiServiceprojet: AdminapiprojetService,
-    private apiService: AdminapinotificationService,
     private authService: AuthService, 
     private route: ActivatedRoute
 
   ) {
 
-    this.readabsence();
+ 
 
 
    }
@@ -70,27 +56,7 @@ export class AdminheaderComponent implements OnInit {
 
 
   }
-  readabsence(){
 
-    this.apiServiceabsence.getAbsences().subscribe((data) => {
-     this.absence = data;
-    })  
-    this.apiServiceuser.getUsers().subscribe((data) => {
-      this.user = data;
-     })  
-     this.apiServiceconge.getConges().subscribe((data) => {
-      this.conge = data;
-     })  
-     this.apiServiceprojet.getProjets().subscribe((data) => {
-      this.projet = data;
-     })  
-     this.apiService.getNotifications().subscribe((data) => {
-      this.notif = data;
-     })  
-    
-    
-
-  }
 
 
   
@@ -104,7 +70,6 @@ export class AdminheaderComponent implements OnInit {
   ngOnDestroy() {
     this.authListenerSubs.unsubscribe();
   }
-
 
 
 }

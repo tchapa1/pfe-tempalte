@@ -20,6 +20,9 @@ let tache = new Schema({
    },
    etat: {
       type: String
+   },
+   idemploye: {
+      type: String
    }
 }, {
    collection: 'taches'

@@ -5,6 +5,8 @@ export class Projet {
     datecreation: string;
     datefin:string;
     etat: string;
+    idgroupe: string;
+    nbheures: string;
  
  }
  

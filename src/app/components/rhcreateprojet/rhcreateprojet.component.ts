@@ -35,6 +35,8 @@ export class RhcreateprojetComponent implements OnInit {
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
       etat: ['', [Validators.required]],
+      idemploye: ['', [Validators.required]],
+      nbheures: ['', [Validators.required]],
 
     });
   }

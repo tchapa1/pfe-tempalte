@@ -1,14 +1,15 @@
-
-
-
-
 <app-chefheader></app-chefheader>
 <app-chefmenu></app-chefmenu>
 
 
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+  
+  
 
-
-<br><hr>
+<br>
+<hr>
 
 
 
@@ -16,25 +17,25 @@
   <div class="col-md-4 register-absence">
     <!-- form card register -->
     <div class="card-body">
-      <form [formGroup]="findformForm" (ngSubmit)="onSubmitss()">
+      <form [formGroup]="findformForm" >
 
 
 
         <div class="form-row">
           <div class="col">
-              <label for="inputName">email</label>
-              <input class="form-control" type="text" formControlName="email" />
-              <!-- error -->            
-            </div>
+            <label for="inputName">email</label>
+            <input class="form-control" type="text" formControlName="email" />
+            <!-- error -->
+          </div>
           <div class="col">
             <label for="inputName">role</label>
             <input class="form-control" type="text" formControlName="role" />
-            <!-- error -->            
+            <!-- error -->
           </div>
         </div>
 
 
-<br><br>
+        <br><br>
 
 
         <div class="form-group">
@@ -49,66 +50,94 @@
   <!-- form card register -->
 </div>
 
+</div>
+</div>
+</div>
 
 
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+  
+  
 
 
-<br><hr>
+<br>
+<hr>
 <div class="container">
   <button class="btn btn-lg btn-success" routerLink="/admincreeruser/">create new</button>&nbsp;
   <button class="btn btn-lg btn-info" (click)="openPDF()">Download PDF</button>&nbsp;
 
 </div>
 <br><hr>
+  
+</div>
+</div>
+</div>
 
 <div class="container">
-    <!-- No data message -->
-    <p *ngIf="user.length <= 0" class="no-data text-center">There is no user added yet!</p>
-    <!-- user list -->
-    <table class="table table-bordered" *ngIf="user.length > 0">
-      <thead class="table-success">
-        <tr>
-          <th scope="col">user ID</th>
-          <th scope="col">Email</th>
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+  
+  
+<br><hr>
+<div class="container">
+  <!-- No data message -->
+  <p *ngIf="user.length <= 0" class="no-data text-center">There is no user added yet!</p>
+  <!-- user list -->
+  <table class="table table-bordered" *ngIf="user.length > 0" id="htmlData">
+    <thead class="table-success">
+      <tr>
+        <th scope="col">user ID</th>
+        <th scope="col">Email</th>
 
-<th scope="col center">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of user; let i = index">
-          <th scope="row">{{user._id}}</th>
-          <td>{{user.email}}</td>
+        <th scope="col center">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
 
 
-<td>
-            <span class="delete" (click)="removeuser(user, i)">
-              <button type="button" class="btn btn-danger btn-lg">Delete</button>&nbsp;&nbsp;
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <tr *ngFor="
+          let user of user
+            | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        ">
+
+
+        <th scope="row">{{user._id}}</th>
+        <td>{{user.email}}</td>
+
+
+        <td>
+          <span class="delete" (click)="removeuser(user, i)">
+            <button type="button" class="btn btn-danger btn-lg">Delete</button>&nbsp;&nbsp;
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
   </div>
 
 
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
+</div>
+</div>
 
 
 

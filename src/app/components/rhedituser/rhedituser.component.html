@@ -6,6 +6,12 @@
 <app-rhmenu></app-rhmenu>
 
 
+<div class="container">
+  <div class="col-12 col-sm-12 col-lg-12">
+    <div class="card ">
+  <br><hr>
+  
+      
 
 
 
@@ -15,7 +21,41 @@
       <div class="card-body">
         <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
 
+          <div class="form-row">
+            <div class="col">
+                <label for="inputName">nom</label>
+                <input class="form-control" type="text" formControlName="nom" />
+                <!-- error -->            
+              </div>
+            <div class="col">
+              <label for="inputName">prenom</label>
+              <input class="form-control" type="text" formControlName="prenom" />
+              <!-- error -->            
+            </div>
+          </div>
+          <div class="form-row">
+            
+            <div class="col">
+              <label for="inputName">departement</label>
+              <select class="form-select"  name="role"  formControlName="departement">
 
+                <option>Selectionner departement </option>
+  
+                <option>Administration</option>
+                <option>Informatique</option>
+                <option>Ressources humaines</option>
+  
+  
+    
+              </select>
+              <!-- error -->            
+            </div>
+            <div class="col">
+              <label for="inputName">matricule</label>
+              <input class="form-control" type="text" formControlName="matricule" />
+              <!-- error -->            
+            </div>
+          </div>
 
           <div class="form-row">
             <div class="col">
@@ -69,11 +109,10 @@
     <!-- form card register -->
   </div>
 
-
-
-
-
-
+  <br><hr>
+      </div>
+  </div>
+  </div>
 
 
 

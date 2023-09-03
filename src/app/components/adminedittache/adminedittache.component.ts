@@ -34,8 +34,7 @@ export class AdminedittacheComponent implements OnInit {
       nom: ['', [Validators.required]],
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
-      idprojet: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+
     });
   }
   // Choose options with select-dropdown
@@ -50,8 +49,7 @@ export class AdminedittacheComponent implements OnInit {
         nom: data['nom'],
         description: data['description'],
         datecreation: data['datecreation'],
-        idprojet: data['idprojet'],
-        etat: data['etat'],
+
       });
     });
   }
@@ -60,8 +58,7 @@ export class AdminedittacheComponent implements OnInit {
       nom: ['', [Validators.required]],
       description: ['', [Validators.required]],
       datecreation: ['', [Validators.required]],
-      idprojet: ['', [Validators.required]],
-      etat: ['', [Validators.required]],
+
     });
   }
   onSubmit() {
